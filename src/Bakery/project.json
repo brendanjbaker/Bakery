@@ -1,0 +1,16 @@
+﻿{
+	"authors": [ "baker" ],
+	"dependencies": {
+		"System.Collections": "4.0.11-rc2-23616",
+		"System.Linq": "4.0.1-rc2-23616",
+		"System.Threading.Tasks": "4.0.11-rc2-23616"
+	},
+	"description": "Bakery Class Library",
+	"frameworks": {
+		"dnxcore50": { }
+	},
+	"licenseUrl": "",
+	"projectUrl": "http://github.com/brendanjbaker/bakery",
+	"tags": [ "" ],
+	"version": "0.1.0"
+}
