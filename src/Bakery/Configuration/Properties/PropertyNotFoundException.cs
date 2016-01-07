@@ -16,7 +16,7 @@
 		{
 			get
 			{
-				return $"Property \"${propertyName}\" not found.";
+				return $"Property \"{propertyName}\" not found.";
 			}
 		}
 	}
