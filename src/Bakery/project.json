@@ -4,7 +4,7 @@
 	"description": "Bakery Class Library",
 	"frameworks": {
 		"dnx46": { },
-		"dotnet5.5": {
+		"dotnet5.4": {
 			"dependencies": {
 				"System.Collections": "4.0.11-beta-23516",
 				"System.ComponentModel.TypeConverter": "4.0.1-beta-23516",
