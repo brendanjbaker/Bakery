@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{89EA03FA-9EF5-4F63-9984-A0AD616B462B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{385B6FCE-0674-4827-A595-F57640F8F5F3}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Bakery", "src\Bakery\Bakery.xproj", "{068400C9-0DD2-4351-A10D-279188A0E957}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{068400C9-0DD2-4351-A10D-279188A0E957}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{068400C9-0DD2-4351-A10D-279188A0E957}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{068400C9-0DD2-4351-A10D-279188A0E957}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{068400C9-0DD2-4351-A10D-279188A0E957}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{068400C9-0DD2-4351-A10D-279188A0E957} = {89EA03FA-9EF5-4F63-9984-A0AD616B462B}
+	EndGlobalSection
+EndGlobal
