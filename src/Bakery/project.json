@@ -7,6 +7,7 @@
 		"dnxcore50": {
 			"dependencies": {
 				"System.Collections": "4.0.11-beta-23516",
+				"System.ComponentModel.TypeConverter": "4.0.1-beta-23516",
 				"System.IO": "4.0.11-beta-23516",
 				"System.IO.FileSystem": "4.0.1-beta-23516",
 				"System.Linq": "4.0.1-beta-23516",
