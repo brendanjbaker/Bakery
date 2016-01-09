@@ -3,7 +3,7 @@
 	using System;
 
 	public class EmailAddress
-		: IEmailHeader
+		: IEmailAddress
 	{
 		private readonly String name;
 		private readonly String value;
