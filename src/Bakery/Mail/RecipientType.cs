@@ -2,8 +2,8 @@
 {
 	public enum RecipientType
 	{
-		BCC,
-		CC,
+		Bcc,
+		Cc,
 		To
 	}
 }
