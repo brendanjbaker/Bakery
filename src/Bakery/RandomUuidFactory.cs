@@ -1,6 +1,6 @@
 ﻿namespace Bakery
 {
-	using Entropy;
+	using Security;
 	using System;
 
 	public class RandomUuidFactory

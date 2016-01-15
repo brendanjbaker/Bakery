@@ -1,4 +1,4 @@
-﻿namespace Bakery.Entropy
+﻿namespace Bakery.Security
 {
 	using System;
 
