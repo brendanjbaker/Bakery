@@ -6,7 +6,14 @@
 	[TypeConverter(typeof(UuidTypeConverter))]
 	public struct Uuid
 	{
+		public static readonly Uuid Zero;
+
 		private readonly Guid guid;
+
+		static Uuid()
+		{
+			Zero = new Uuid(Guid.Empty);
+		}
 
 		public Uuid(Guid guid)
 		{
