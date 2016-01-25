@@ -39,8 +39,8 @@
 
 			return new BasicAuthentication()
 			{
-				Password = parts[0],
-				Username = parts[1]
+				Password = parts[1],
+				Username = parts[0]
 			};
 		}
 
