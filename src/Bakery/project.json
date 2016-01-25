@@ -1,7 +1,8 @@
 ﻿{
 	"authors": [ "baker" ],
 	"dependencies": {
-		"MailKit": "1.3.0-beta5"
+		"MailKit": "1.3.0-beta5",
+		"Newtonsoft.Json": "8.0.2"
 	},
 	"description": "Bakery Class Library",
 	"frameworks": {
