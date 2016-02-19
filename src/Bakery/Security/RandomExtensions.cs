@@ -17,7 +17,7 @@
 			return buffer;
 		}
 
-		public static Int64 GetLong(this IRandom random)
+		public static Int64 GetInt64(this IRandom random)
 		{
 			return BitConverter.ToInt64(random.GetBytes(8), 0);
 		}
