@@ -17,6 +17,11 @@
 			return buffer;
 		}
 
+		public static String GetDigit(this IRandom random)
+		{
+			return (random.GetUInt64() % 10).ToString();
+		}
+
 		public static Int64 GetInt64(this IRandom random)
 		{
 			return BitConverter.ToInt64(random.GetBytes(8), 0);
