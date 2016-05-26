@@ -12,8 +12,11 @@
 			"imports": "dnxcore50"
 		}
 	},
-	"licenseUrl": "",
-	"projectUrl": "http://github.com/brendanjbaker/bakery",
-	"tags": [ "" ],
-	"version": "0.1.0"
+	"packOptions": {
+		"repository": {
+			"type": "git",
+			"url": "http://github.com/brendanjbaker/bakery"
+		}
+	},
+	"version": "0.4"
 }
