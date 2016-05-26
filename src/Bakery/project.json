@@ -12,8 +12,6 @@
 			"imports": "dnxcore50"
 		}
 	},
-	"licenseUrl": "",
-	"tags": [ "" ],
 	"packOptions": {
 		"repository": {
 			"type": "git",
