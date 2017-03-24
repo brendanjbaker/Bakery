@@ -16,7 +16,9 @@
 
 		public override Boolean CanConvertTo(ITypeDescriptorContext context, Type destinationType)
 		{
-			return destinationType == typeof(Uuid);
+			return
+				destinationType == typeof(Uuid) ||
+				destinationType == typeof(Uuid?);
 		}
 
 		public override Object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, Object value)
