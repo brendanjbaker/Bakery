@@ -41,6 +41,9 @@
 
 		private Boolean IsExpired()
 		{
+			if (expiration == null)
+				return true;
+
 			return clock.GetUniversalTime() >= expiration;
 		}
 	}
