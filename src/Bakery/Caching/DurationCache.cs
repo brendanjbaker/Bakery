@@ -14,6 +14,12 @@
 
 		public DurationCache(IClock clock, TimeSpan duration)
 		{
+			if (clock == null)
+				throw new ArgumentNullException(nameof(clock));
+
+			if (duration < TimeSpan.Zero)
+				throw new ArgumentOutOfRangeException(nameof(duration));
+
 			this.clock = clock;
 			this.duration = duration;
 		}

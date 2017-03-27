@@ -10,6 +10,9 @@
 
 		public EmailAddress(String value, String name = null)
 		{
+			if (value == null)
+				throw new ArgumentNullException(nameof(value));
+
 			this.name = name;
 			this.value = value;
 		}

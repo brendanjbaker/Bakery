@@ -10,6 +10,9 @@
 
 		public SystemStopwatch(Stopwatch stopwatch)
 		{
+			if (stopwatch == null)
+				throw new ArgumentNullException(nameof(stopwatch));
+
 			this.stopwatch = stopwatch;
 		}
 

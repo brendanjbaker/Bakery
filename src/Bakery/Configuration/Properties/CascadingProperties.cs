@@ -10,6 +10,9 @@
 
 		public CascadingProperties(params IProperties[] properties)
 		{
+			if (properties == null)
+				throw new ArgumentNullException(nameof(properties));
+
 			this.properties = properties;
 		}
 

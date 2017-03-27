@@ -10,6 +10,9 @@
 
 		public RandomUuidFactory(IRandom random)
 		{
+			if (random == null)
+				throw new ArgumentNullException(nameof(random));
+
 			this.random = random;
 		}
 

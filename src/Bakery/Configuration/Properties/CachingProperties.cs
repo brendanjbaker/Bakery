@@ -14,6 +14,12 @@
 			ICache<IProperties> cache,
 			IProperties source)
 		{
+			if (cache == null)
+				throw new ArgumentNullException(nameof(cache));
+
+			if (source == null)
+				throw new ArgumentNullException(nameof(source));
+
 			this.cache = cache;
 			this.source = source;
 		}

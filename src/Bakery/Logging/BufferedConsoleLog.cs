@@ -35,6 +35,9 @@
 
 		public void Write(Level logLevel, String message)
 		{
+			if (message == null)
+				throw new ArgumentNullException(message);
+
 			var textWriter = logLevel >= Level.Warning
 				? Console.Error
 				: Console.Out;

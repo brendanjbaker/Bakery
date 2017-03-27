@@ -12,6 +12,12 @@
 
 		public BasicAuthenticationParser(IBase64Parser base64Parser, Encoding encoding)
 		{
+			if (base64Parser == null)
+				throw new ArgumentNullException(nameof(base64Parser));
+
+			if (encoding == null)
+				throw new ArgumentNullException(nameof(encoding));
+
 			this.base64Parser = base64Parser;
 			this.encoding = encoding;
 		}

@@ -12,6 +12,12 @@
 
 		public FileProperties(IPropertiesParser propertiesParser, String path)
 		{
+			if (propertiesParser == null)
+				throw new ArgumentNullException(nameof(propertiesParser));
+
+			if (path == null)
+				throw new ArgumentNullException(nameof(path));
+
 			this.propertiesParser = propertiesParser;
 			this.path = path;
 		}

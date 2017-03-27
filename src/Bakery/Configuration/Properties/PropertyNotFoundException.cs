@@ -9,6 +9,9 @@
 
 		public PropertyNotFoundException(String propertyName)
 		{
+			if (propertyName == null)
+				throw new ArgumentNullException(nameof(propertyName));
+
 			this.propertyName = propertyName;
 		}
 

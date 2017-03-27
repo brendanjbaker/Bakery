@@ -14,6 +14,15 @@
 
 		public Email(IEmailAddress sender, IEnumerable<IEmailRecipient> recipients, IEnumerable<IEmailHeader> headers, String subject, String body)
 		{
+			if (sender == null)
+				throw new ArgumentNullException(nameof(sender));
+
+			if (recipients == null)
+				throw new ArgumentNullException(nameof(recipients));
+
+			if (headers == null)
+				throw new ArgumentNullException(nameof(headers));
+
 			this.body = body;
 			this.headers = headers;
 			this.recipients = recipients;

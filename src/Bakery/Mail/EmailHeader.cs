@@ -10,6 +10,12 @@
 
 		public EmailHeader(String name, String value)
 		{
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			if (value == null)
+				throw new ArgumentNullException(nameof(value));
+
 			this.name = name;
 			this.value = value;
 		}

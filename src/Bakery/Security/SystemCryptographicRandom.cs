@@ -10,6 +10,9 @@
 
 		public SystemCryptographicRandom(RandomNumberGenerator randomNumberGenerator)
 		{
+			if (randomNumberGenerator == null)
+				throw new ArgumentNullException(nameof(randomNumberGenerator));
+
 			this.randomNumberGenerator = randomNumberGenerator;
 		}
 
