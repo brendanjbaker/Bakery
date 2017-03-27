@@ -27,7 +27,14 @@
 			if (basicAuthentication == null)
 				throw new ArgumentNullException(nameof(basicAuthentication));
 
-			return $"Basic {base64Printer.Print(encoding.GetBytes($"{basicAuthentication.Username}:{basicAuthentication.Password}"))}";
+			var credentials =
+				String.Format("{0}:{1}",
+					basicAuthentication.Username,
+					basicAuthentication.Password);
+
+			var credentialsBase64 = base64Printer.Print(encoding.GetBytes(credentials));
+
+			return $"Basic {credentialsBase64}";
 		}
 	}
 }
