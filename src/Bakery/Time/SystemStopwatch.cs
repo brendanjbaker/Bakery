@@ -16,10 +16,7 @@
 			this.stopwatch = stopwatch;
 		}
 
-		public TimeSpan Elapsed
-		{
-			get { return stopwatch.Elapsed; }
-		}
+		public TimeSpan Elapsed => stopwatch.Elapsed;
 
 		public void Start()
 		{

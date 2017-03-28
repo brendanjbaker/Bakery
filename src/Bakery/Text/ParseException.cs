@@ -5,9 +5,6 @@
 	public class ParseException<T>
 		: Exception
 	{
-		public override String Message
-		{
-			get { return $"Failed to parse type {typeof(T).Name}."; }
-		}
+		public override String Message => $"Failed to parse type {typeof(T).Name}.";
 	}
 }

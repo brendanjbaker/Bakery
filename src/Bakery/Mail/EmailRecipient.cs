@@ -17,14 +17,8 @@
 			this.recipientType = recipientType;
 		}
 
-		public IEmailAddress EmailAddress
-		{
-			get { return emailAddress; }
-		}
+		public IEmailAddress EmailAddress => emailAddress;
 
-		public RecipientType RecipientType
-		{
-			get { return recipientType; }
-		}
+		public RecipientType RecipientType => recipientType;
 	}
 }

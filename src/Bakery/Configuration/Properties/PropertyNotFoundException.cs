@@ -15,12 +15,6 @@
 			this.propertyName = propertyName;
 		}
 
-		public override String Message
-		{
-			get
-			{
-				return $"Property \"{propertyName}\" not found.";
-			}
-		}
+		public override String Message => $"Property \"{propertyName}\" not found.";
 	}
 }

@@ -30,29 +30,14 @@
 			this.subject = subject;
 		}
 
-		public String Body
-		{
-			get { return body; }
-		}
+		public String Body => body;
 
-		public IEnumerable<IEmailHeader> Headers
-		{
-			get { return headers; }
-		}
+		public IEnumerable<IEmailHeader> Headers => headers;
 
-		public IEnumerable<IEmailRecipient> Recipients
-		{
-			get { return recipients; }
-		}
+		public IEnumerable<IEmailRecipient> Recipients => recipients;
 
-		public IEmailAddress Sender
-		{
-			get { return sender; }
-		}
+		public IEmailAddress Sender => sender;
 
-		public String Subject
-		{
-			get { return subject; }
-		}
+		public String Subject => subject;
 	}
 }
