@@ -50,6 +50,9 @@
 		{
 			Guid guid;
 
+			if (@string == null)
+				throw new ArgumentNullException(nameof(@string));
+
 			if (!Guid.TryParse(@string, out guid))
 				return null;
 

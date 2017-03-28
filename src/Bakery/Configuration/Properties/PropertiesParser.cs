@@ -10,6 +10,9 @@
 
 		public PropertiesParser(ILineSplitter lineSplitter)
 		{
+			if (lineSplitter == null)
+				throw new ArgumentNullException(nameof(lineSplitter));
+
 			this.lineSplitter = lineSplitter;
 		}
 

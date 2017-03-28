@@ -4,9 +4,12 @@
 
 	public static class StringRemoveExtensions
 	{
-		public static String Remove(this String @string, String @remove)
+		public static String Remove(this String @string, String remove)
 		{
-			return @string.Replace(@remove, String.Empty);
+			if (remove == null)
+				throw new ArgumentNullException(nameof(remove));
+
+			return @string.Replace(remove, String.Empty);
 		}
 	}
 }

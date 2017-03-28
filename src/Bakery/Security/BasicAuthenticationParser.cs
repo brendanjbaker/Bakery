@@ -12,12 +12,24 @@
 
 		public BasicAuthenticationParser(IBase64Parser base64Parser, Encoding encoding)
 		{
+			if (base64Parser == null)
+				throw new ArgumentNullException(nameof(base64Parser));
+
+			if (encoding == null)
+				throw new ArgumentNullException(nameof(encoding));
+
 			this.base64Parser = base64Parser;
 			this.encoding = encoding;
 		}
 
 		public IBasicAuthentication TryParse(String @string)
 		{
+			// Consistent with .NET Framework methods, TryParse() won't throw an
+			// ArgumentNullException if the supplied input is null.
+
+			if (@string == null)
+				return null;
+
 			if (!@string.StartsWith("BASIC ", StringComparison.OrdinalIgnoreCase))
 				return null;
 

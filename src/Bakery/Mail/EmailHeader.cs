@@ -10,18 +10,18 @@
 
 		public EmailHeader(String name, String value)
 		{
+			if (name == null)
+				throw new ArgumentNullException(nameof(name));
+
+			if (value == null)
+				throw new ArgumentNullException(nameof(value));
+
 			this.name = name;
 			this.value = value;
 		}
 
-		public String Name
-		{
-			get { return name; }
-		}
+		public String Name => name;
 
-		public String Value
-		{
-			get { return value; }
-		}
+		public String Value => value;
 	}
 }

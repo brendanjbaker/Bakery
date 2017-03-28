@@ -2,6 +2,7 @@
 {
 	using global::MailKit.Net.Smtp;
 	using global::MailKit.Security;
+	using System;
 	using System.Threading.Tasks;
 
 	public class MailKitEmailClient
@@ -16,6 +17,15 @@
 			SmtpClient smtpClient,
 			ISmtpConfiguration smtpConfiguration)
 		{
+			if (mimeMessageFactory == null)
+				throw new ArgumentNullException(nameof(mimeMessageFactory));
+
+			if (smtpClient == null)
+				throw new ArgumentNullException(nameof(smtpClient));
+
+			if (smtpConfiguration == null)
+				throw new ArgumentNullException(nameof(smtpConfiguration));
+
 			this.mimeMessageFactory = mimeMessageFactory;
 			this.smtpClient = smtpClient;
 			this.smtpConfiguration = smtpConfiguration;
@@ -23,6 +33,9 @@
 
 		public async Task SendAsync(IEmail email)
 		{
+			if (email == null)
+				throw new ArgumentNullException(nameof(email));
+
 			var mimeMessage = mimeMessageFactory.Create(email);
 
 			await smtpClient.ConnectAsync(

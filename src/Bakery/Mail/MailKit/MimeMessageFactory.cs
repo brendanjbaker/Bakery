@@ -1,12 +1,16 @@
 ﻿namespace Bakery.Mail.MailKit
 {
 	using MimeKit;
+	using System;
 
 	public class MimeMessageFactory
 		: IMimeMessageFactory
 	{
 		public MimeMessage Create(IEmail email)
 		{
+			if (email == null)
+				throw new ArgumentNullException(nameof(email));
+
 			var mimeMessage = new MimeMessage();
 
 			mimeMessage.From.Add(
