@@ -1,4 +1,4 @@
-﻿namespace Bakery.Text
+﻿namespace Bakery
 {
 	using System;
 

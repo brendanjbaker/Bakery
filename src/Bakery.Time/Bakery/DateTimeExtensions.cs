@@ -1,4 +1,4 @@
-﻿namespace Bakery.Time
+﻿namespace Bakery
 {
 	using System;
 
