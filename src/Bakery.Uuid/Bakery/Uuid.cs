@@ -80,6 +80,9 @@
 			if (@object == null)
 				return false;
 
+			if (@object.GetType() == typeof(Guid))
+				@object = new Uuid((Guid)@object);
+
 			if (@object.GetType() != typeof(Uuid))
 				return false;
 
