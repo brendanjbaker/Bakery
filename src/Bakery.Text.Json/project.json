@@ -1,6 +1,6 @@
 ﻿{
 	"dependencies": {
-		"Bakery.Text": "0.10.1",
+		"Bakery.Text": "0.11",
 		"NETStandard.Library": "1.6.1",
 		"Newtonsoft.Json": "8.0.2"
 	},
