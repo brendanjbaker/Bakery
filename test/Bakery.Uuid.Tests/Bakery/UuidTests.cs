@@ -222,10 +222,12 @@
 			Assert.Throws<ArgumentNullException>(() => Uuid.Parse(null));
 		}
 
-		[Fact]
-		public void ParseThrowsForInvalidText()
+		[Theory]
+		[InlineData("")]
+		[InlineData("Test")]
+		public void ParseThrowsForInvalidText(String text)
 		{
-			Assert.Throws<FormatException>(() => Uuid.Parse("Test"));
+			Assert.Throws<FormatException>(() => Uuid.Parse(text));
 		}
 	}
 }
