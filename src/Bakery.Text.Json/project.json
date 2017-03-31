@@ -2,7 +2,7 @@
 	"dependencies": {
 		"Bakery.Text": "0.11",
 		"NETStandard.Library": "1.6.1",
-		"Newtonsoft.Json": "8.0.2"
+		"Newtonsoft.Json": "10.0.1"
 	},
 	"frameworks": {
 		"netstandard1.5": {
