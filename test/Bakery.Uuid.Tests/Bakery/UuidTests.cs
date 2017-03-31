@@ -204,5 +204,28 @@
 		{
 			Assert.True(Uuid.Zero.ToString().Length == 32);
 		}
+
+		[Theory]
+		[InlineData("11112222333344445555666677778888")]
+		[InlineData("11112222-3333-4444-5555-666677778888")]
+		public void Parse(String text)
+		{
+			var uuid = Uuid.Parse(text);
+			var guid = Guid.Parse(text);
+
+			Assert.True(uuid == guid);
+		}
+
+		[Fact]
+		public void ParseThrowsForNull()
+		{
+			Assert.Throws<ArgumentNullException>(() => Uuid.Parse(null));
+		}
+
+		[Fact]
+		public void ParseThrowsForInvalidText()
+		{
+			Assert.Throws<FormatException>(() => Uuid.Parse("Test"));
+		}
 	}
 }
