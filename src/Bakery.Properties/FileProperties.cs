@@ -1,4 +1,4 @@
-﻿namespace Bakery.Configuration.Properties
+﻿namespace Bakery.Properties
 {
 	using System;
 	using System.Collections.Generic;

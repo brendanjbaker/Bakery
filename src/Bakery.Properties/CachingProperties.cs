@@ -1,4 +1,4 @@
-﻿namespace Bakery.Configuration.Properties
+﻿namespace Bakery.Properties
 {
 	using Caching;
 	using System;
