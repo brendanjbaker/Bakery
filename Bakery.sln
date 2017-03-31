@@ -32,6 +32,10 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Bakery.Text", "src\Bakery.T
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Bakery.Text.Json", "src\Bakery.Text.Json\Bakery.Text.Json.xproj", "{678808FD-C3AD-478E-82F1-DBBFB217C712}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C5A56764-9753-4CE3-9BA7-DD01FA00C451}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Bakery.Uuid.Tests", "test\Bakery.Uuid.Tests\Bakery.Uuid.Tests.xproj", "{515C87C4-C46A-4A07-8B36-8BBDBAA838E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +86,10 @@ Global
 		{678808FD-C3AD-478E-82F1-DBBFB217C712}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{678808FD-C3AD-478E-82F1-DBBFB217C712}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{678808FD-C3AD-478E-82F1-DBBFB217C712}.Release|Any CPU.Build.0 = Release|Any CPU
+		{515C87C4-C46A-4A07-8B36-8BBDBAA838E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{515C87C4-C46A-4A07-8B36-8BBDBAA838E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{515C87C4-C46A-4A07-8B36-8BBDBAA838E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{515C87C4-C46A-4A07-8B36-8BBDBAA838E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,5 +106,6 @@ Global
 		{6AEC0DF1-E5F0-4FF4-A302-F5F30BF1EC30} = {89EA03FA-9EF5-4F63-9984-A0AD616B462B}
 		{6E9226E7-2D1A-47AC-8B9F-A86F57170C95} = {89EA03FA-9EF5-4F63-9984-A0AD616B462B}
 		{678808FD-C3AD-478E-82F1-DBBFB217C712} = {89EA03FA-9EF5-4F63-9984-A0AD616B462B}
+		{515C87C4-C46A-4A07-8B36-8BBDBAA838E3} = {C5A56764-9753-4CE3-9BA7-DD01FA00C451}
 	EndGlobalSection
 EndGlobal
