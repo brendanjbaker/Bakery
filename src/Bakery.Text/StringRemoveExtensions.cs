@@ -1,15 +1,12 @@
-﻿namespace Bakery
+﻿using System;
+
+public static class StringRemoveExtensions
 {
-	using System;
-
-	public static class StringRemoveExtensions
+	public static String Remove(this String @string, String remove)
 	{
-		public static String Remove(this String @string, String remove)
-		{
-			if (remove == null)
-				throw new ArgumentNullException(nameof(remove));
+		if (remove == null)
+			throw new ArgumentNullException(nameof(remove));
 
-			return @string.Replace(remove, String.Empty);
-		}
+		return @string.Replace(remove, String.Empty);
 	}
 }
