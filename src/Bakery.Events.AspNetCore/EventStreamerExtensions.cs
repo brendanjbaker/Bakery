@@ -1,5 +1,6 @@
 ﻿using Bakery.Events;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
@@ -19,5 +20,19 @@ public static class EventStreamerExtensions
 			if (receiveResult.CloseStatus.HasValue)
 				httpContext.Abort();
 		});
+	}
+
+	public static async Task StreamAsync(this IEventStreamer eventStreamer, String topic, HttpContext httpContext, Func<Task<StatusCodeResult>> preflightFunction)
+	{
+		var preflightResponse = await preflightFunction();
+
+		if (preflightResponse == null)
+		{
+			httpContext.Response.StatusCode = preflightResponse.StatusCode;
+
+			return;
+		}
+
+		await eventStreamer.StreamAsync(topic, httpContext);
 	}
 }
