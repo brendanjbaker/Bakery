@@ -1,0 +1,12 @@
+{
+	"dependencies": {
+		"Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0",
+		"NETStandard.Library": "1.6.1"
+	},
+	"frameworks": {
+		"netstandard1.5": {
+			"imports": "dnxcore50"
+		}
+	},
+	"version": "0.12"
+}
