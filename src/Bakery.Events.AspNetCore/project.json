@@ -1,0 +1,14 @@
+﻿{
+	"dependencies": {
+		"Bakery.Events": "0.13",
+		"Microsoft.AspNetCore.Http.Abstractions": "1.1.0",
+		"Microsoft.AspNetCore.Mvc.Core": "1.1.0",
+		"NETStandard.Library": "1.6.1"
+	},
+	"frameworks": {
+		"netstandard1.6": {
+			"imports": "dnxcore50"
+		}
+	},
+	"version": "0.13"
+}
