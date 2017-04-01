@@ -1,6 +1,16 @@
-﻿{
+{
 	"authors": [ "baker" ],
 	"dependencies": {
+		"Bakery.Caching": "0.11",
+		"Bakery.Logging": "0.11",
+		"Bakery.Mail": "0.11",
+		"Bakery.Mail.MailKit": "0.11",
+		"Bakery.Properties": "0.11",
+		"Bakery.Security": "0.11",
+		"Bakery.Text": "0.11",
+		"Bakery.Text.Json": "0.11",
+		"Bakery.Time": "0.11",
+		"Bakery.Uuid": "0.11",
 		"NETStandard.Library": "1.6.1"
 	},
 	"description": "Bakery Class Library",
