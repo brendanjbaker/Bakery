@@ -42,6 +42,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Bakery.Composition.Microsof
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Bakery.Events", "src\Bakery.Events\Bakery.Events.xproj", "{0CB06DE4-D47E-4A8D-8EBC-476E52E573DB}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Bakery.Events.Amazon", "src\Bakery.Events.Amazon\Bakery.Events.Amazon.xproj", "{A698BC8E-9A64-4B7D-8EC2-336450080B63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -108,6 +110,10 @@ Global
 		{0CB06DE4-D47E-4A8D-8EBC-476E52E573DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CB06DE4-D47E-4A8D-8EBC-476E52E573DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CB06DE4-D47E-4A8D-8EBC-476E52E573DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A698BC8E-9A64-4B7D-8EC2-336450080B63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A698BC8E-9A64-4B7D-8EC2-336450080B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A698BC8E-9A64-4B7D-8EC2-336450080B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A698BC8E-9A64-4B7D-8EC2-336450080B63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,5 +134,6 @@ Global
 		{08C912AC-6808-4B49-8C47-40E4610850FD} = {C5A56764-9753-4CE3-9BA7-DD01FA00C451}
 		{68200EAD-9623-424E-B127-64113DCC81DA} = {89EA03FA-9EF5-4F63-9984-A0AD616B462B}
 		{0CB06DE4-D47E-4A8D-8EBC-476E52E573DB} = {89EA03FA-9EF5-4F63-9984-A0AD616B462B}
+		{A698BC8E-9A64-4B7D-8EC2-336450080B63} = {89EA03FA-9EF5-4F63-9984-A0AD616B462B}
 	EndGlobalSection
 EndGlobal
