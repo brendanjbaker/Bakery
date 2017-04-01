@@ -5,6 +5,7 @@
 		"Bakery.Composition.Microsoft": "0.12",
 		"Bakery.Events": "0.12",
 		"Bakery.Events.Amazon": "0.12",
+		"Bakery.Events.AspNetCore": "0.12",
 		"Bakery.Logging": "0.12",
 		"Bakery.Mail": "0.12",
 		"Bakery.Mail.MailKit": "0.12",
