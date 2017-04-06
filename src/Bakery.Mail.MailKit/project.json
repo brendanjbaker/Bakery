@@ -1,6 +1,6 @@
 ﻿{
 	"dependencies": {
-		"Bakery.Mail": "0.14",
+		"Bakery.Mail": "0.14.1",
 		"MailKit": "1.12.0",
 		"NETStandard.Library": "1.6.1"
 	},
@@ -9,5 +9,5 @@
 			"imports": "dnxcore50"
 		}
 	},
-	"version": "0.14"
+	"version": "0.14.1"
 }
