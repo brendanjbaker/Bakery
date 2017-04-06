@@ -1,8 +1,9 @@
 {
 	"dependencies": {
-		"Bakery.Text": "0.14",
+		"Bakery.Exceptions": "0.14",
 		"NETStandard.Library": "1.6.1",
-		"System.Security.Cryptography.Algorithms": "4.3.0"
+		"Nito.AsyncEx.Coordination": "1.0.2",
+		"System.Threading": "4.3.0"
 	},
 	"frameworks": {
 		"netstandard1.5": {
