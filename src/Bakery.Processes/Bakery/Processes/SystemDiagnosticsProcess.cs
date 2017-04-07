@@ -1,9 +1,10 @@
 ﻿namespace Bakery.Processes
 {
 	using Collections;
+	using Specification;
 	using System;
 	using System.Diagnostics;
-	using System.IO;
+	using System.Linq;
 	using System.Threading.Tasks;
 
 	public class SystemDiagnosticsProcess
@@ -18,37 +19,124 @@
 			this.outputQueue = new Queue<Output>();
 		}
 
-		public static IStartedProcess Create(ProcessStartInfo processStartInfo)
+		public static IStartedProcess Create(IProcessSpecification processSpecification)
 		{
-			processStartInfo.RedirectStandardError = true;
-			processStartInfo.RedirectStandardInput = true;
-			processStartInfo.RedirectStandardOutput = true;
-
 			var process = new Process()
 			{
-				StartInfo = processStartInfo
+				StartInfo = new ProcessStartInfo()
+				{
+					CreateNoWindow = true,
+					UseShellExecute = false
+				}
 			};
+
+			if (processSpecification.IsEnvironmentEnabled)
+			{
+				process.StartInfo.LoadUserProfile = true;
+
+				process.StartInfo.Environment.Add("HOME", Environment.GetEnvironmentVariable("USERPROFILE"));
+			}
+
+			if (processSpecification.IsStandardInputEnabled)
+				process.StartInfo.RedirectStandardInput = true;
+
+			if (processSpecification.OutputMode == OutputMode.StandardOutput)
+			{
+				process.StartInfo.RedirectStandardOutput = true;
+			}
+			else if (processSpecification.OutputMode == OutputMode.StandardError)
+			{
+				process.StartInfo.RedirectStandardError = true;
+			}
+			else if (processSpecification.OutputMode == OutputMode.StandardOutputAndError)
+			{
+				process.StartInfo.RedirectStandardError = true;
+				process.StartInfo.RedirectStandardOutput = true;
+			}
+
+			var hasReceivedOutput = false;
+			var hasReceivedError = false;
+
+			if (processSpecification.OutputMode == OutputMode.Combined)
+			{
+				process.StartInfo.FileName = "cmd.exe";
+				//process.StartInfo.Arguments = String.Format("/C \"{0} {1}\"2>&1", processSpecification.Program, String.Join(" ", processSpecification.Arguments).Replace("\"", "\"\""));
+
+				if (processSpecification.Arguments.Any())
+				{
+					process.StartInfo.Arguments = String.Format("/C \"({0} {1})\" 2>&1", processSpecification.Program, String.Join(" ", processSpecification.Arguments));
+				}
+				else
+				{
+					process.StartInfo.Arguments = String.Format("/C \"({0})\" 2>&1", processSpecification.Program);
+				}
+
+				process.StartInfo.RedirectStandardOutput = true;
+			}
+			else
+			{
+				process.StartInfo.FileName = processSpecification.Program;
+				process.StartInfo.Arguments = String.Join(" ", processSpecification.Arguments);
+			}
 
 			var instance = new SystemDiagnosticsProcess(process);
 			var outputGate = new Object();
 
 			process.ErrorDataReceived += (sender, arguments) =>
 			{
-				if (arguments.Data != null)
-					lock (outputGate)
-						instance.outputQueue.Enqueue(new Output(OutputType.Error, arguments.Data));
+				if (arguments.Data == null)
+					return;
+
+				lock (outputGate)
+				{
+					var text = arguments.Data;
+
+					if (hasReceivedError)
+					{
+						text = Environment.NewLine + text;
+					}
+					else
+					{
+						hasReceivedError = true;
+					}
+
+					instance.outputQueue.Enqueue(new Output(OutputType.Error, text));
+				}
 			};
 
 			process.OutputDataReceived += (sender, arguments) =>
 			{
-				if (arguments.Data != null)
-					lock (outputGate)
-						instance.outputQueue.Enqueue(new Output(OutputType.Output, arguments.Data));
+				if (arguments.Data == null)
+					return;
+
+				lock (outputGate)
+				{
+					var text = arguments.Data;
+
+					if (hasReceivedOutput)
+					{
+						text = Environment.NewLine + text;
+					}
+					else
+					{
+						hasReceivedOutput = true;
+					}
+
+					var outputType = processSpecification.OutputMode == OutputMode.Combined
+						? OutputType.Combined
+						: OutputType.Output;
+
+					instance.outputQueue.Enqueue(new Output(outputType, text));
+				}
 			};
 
 			process.Start();
-			process.BeginOutputReadLine();
-			process.BeginErrorReadLine();
+
+			if (process.StartInfo.RedirectStandardOutput)
+				process.BeginOutputReadLine();
+
+			if (process.StartInfo.RedirectStandardError)
+				process.BeginErrorReadLine();
 
 			return instance;
 		}
