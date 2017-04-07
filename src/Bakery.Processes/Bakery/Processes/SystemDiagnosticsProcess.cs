@@ -3,6 +3,7 @@
 	using Collections;
 	using System;
 	using System.Diagnostics;
+	using System.IO;
 	using System.Threading.Tasks;
 
 	public class SystemDiagnosticsProcess
@@ -19,6 +20,10 @@
 
 		public static IStartedProcess Create(ProcessStartInfo processStartInfo)
 		{
+			processStartInfo.RedirectStandardError = true;
+			processStartInfo.RedirectStandardInput = true;
+			processStartInfo.RedirectStandardOutput = true;
+
 			var process = new Process()
 			{
 				StartInfo = processStartInfo
@@ -29,14 +34,16 @@
 
 			process.ErrorDataReceived += (sender, arguments) =>
 			{
-				lock (outputGate)
-					instance.outputQueue.Enqueue(new Output(OutputType.Error, arguments.Data));
+				if (arguments.Data != null)
+					lock (outputGate)
+						instance.outputQueue.Enqueue(new Output(OutputType.Error, arguments.Data));
 			};
 
 			process.OutputDataReceived += (sender, arguments) =>
 			{
-				lock (outputGate)
-					instance.outputQueue.Enqueue(new Output(OutputType.Output, arguments.Data));
+				if (arguments.Data != null)
+					lock (outputGate)
+						instance.outputQueue.Enqueue(new Output(OutputType.Output, arguments.Data));
 			};
 
 			process.Start();
@@ -46,7 +53,7 @@
 			return instance;
 		}
 
-		public async Task<Output?> TryReadAsync(TimeSpan timeout)
+		public async Task<Output> TryReadAsync(TimeSpan timeout)
 		{
 			if (timeout < TimeSpan.Zero)
 				throw new ArgumentOutOfRangeException(nameof(timeout));

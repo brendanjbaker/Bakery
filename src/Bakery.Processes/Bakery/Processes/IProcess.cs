@@ -5,6 +5,6 @@
 
 	public interface IProcess
 	{
-		Task<Output?> TryReadAsync(TimeSpan timeout);
+		Task<Output> TryReadAsync(TimeSpan timeout);
 	}
 }
