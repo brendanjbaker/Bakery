@@ -4,9 +4,9 @@
 
 	public interface IStopwatch
 	{
+		TimeSpan Elapsed { get; }
+
 		void Start();
 		void Stop();
-
-		TimeSpan Elapsed { get; }
 	}
 }
