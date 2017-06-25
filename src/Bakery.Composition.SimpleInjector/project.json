@@ -1,6 +1,7 @@
-{
+﻿{
 	"dependencies": {
-		"NETStandard.Library": "1.6.1"
+		"NETStandard.Library": "1.6.1",
+		"SimpleInjector": "4.0.8"
 	},
 	"frameworks": {
 		"netstandard1.5": {

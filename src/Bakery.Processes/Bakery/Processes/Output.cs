@@ -2,7 +2,7 @@
 {
 	using System;
 
-	public struct Output
+	public class Output
 	{
 		private readonly String text;
 		private readonly OutputType type;

@@ -1,9 +1,9 @@
 ﻿namespace Bakery.Processes
 {
-	using System.Diagnostics;
+	using Specification;
 
 	public interface IProcessFactory
 	{
-		IStartedProcess Start(ProcessStartInfo processStartInfo);
+		IStartedProcess Start(IProcessSpecification processSpecification);
 	}
 }

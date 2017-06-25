@@ -1,6 +1,6 @@
 {
 	"dependencies": {
-		"Bakery.Text": "0.14.1",
+		"Bakery.Text": "0.15",
 		"NETStandard.Library": "1.6.1"
 	},
 	"frameworks": {
@@ -8,5 +8,5 @@
 			"imports": "dnxcore50"
 		}
 	},
-	"version": "0.14.1"
+	"version": "0.15"
 }

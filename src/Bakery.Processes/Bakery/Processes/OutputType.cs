@@ -2,6 +2,6 @@
 {
 	public enum OutputType
 	{
-		Error, Output
+		Combined, Error, Output
 	}
 }
