@@ -1,6 +1,6 @@
 {
 	"dependencies": {
-		"Bakery.Caching": "0.15.1",
+		"Bakery.Caching": "0.15.2",
 		"NETStandard.Library": "1.6.1"
 	},
 	"frameworks": {
@@ -8,5 +8,5 @@
 			"imports": "dnxcore50"
 		}
 	},
-	"version": "0.15.1"
+	"version": "0.15.2"
 }
