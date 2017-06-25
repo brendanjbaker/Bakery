@@ -1,19 +1,22 @@
 {
 	"authors": [ "baker" ],
 	"dependencies": {
-		"Bakery.Caching": "0.12",
-		"Bakery.Composition.Microsoft": "0.12",
-		"Bakery.Events": "0.12",
-		"Bakery.Events.Amazon": "0.12",
-		"Bakery.Logging": "0.12",
-		"Bakery.Mail": "0.12",
-		"Bakery.Mail.MailKit": "0.12",
-		"Bakery.Properties": "0.12",
-		"Bakery.Security": "0.12",
-		"Bakery.Text": "0.12",
-		"Bakery.Text.Json": "0.12",
-		"Bakery.Time": "0.12",
-		"Bakery.Uuid": "0.12",
+		"Bakery.Caching": "0.14.1",
+		"Bakery.Collections": "0.14.1",
+		"Bakery.Composition.Microsoft": "0.14.1",
+		"Bakery.Events": "0.14.1",
+		"Bakery.Events.Amazon": "0.14.1",
+		"Bakery.Exceptions": "0.14.1",
+		"Bakery.Logging": "0.14.1",
+		"Bakery.Mail": "0.14.1",
+		"Bakery.Mail.MailKit": "0.14.1",
+		"Bakery.Processes": "0.14.1",
+		"Bakery.Properties": "0.14.1",
+		"Bakery.Security": "0.14.1",
+		"Bakery.Text": "0.14.1",
+		"Bakery.Text.Json": "0.14.1",
+		"Bakery.Time": "0.14.1",
+		"Bakery.Uuid": "0.14.1",
 		"NETStandard.Library": "1.6.1"
 	},
 	"description": "Bakery Class Library",
@@ -28,5 +31,5 @@
 			"url": "http://github.com/brendanjbaker/bakery"
 		}
 	},
-	"version": "0.12"
+	"version": "0.14.1"
 }
