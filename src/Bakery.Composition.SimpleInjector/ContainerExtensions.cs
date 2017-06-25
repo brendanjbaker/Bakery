@@ -8,4 +8,18 @@ public static class ContainerExtensions
 	{
 		new TModule().Compose(container);
 	}
+
+	public static void RegisterScoped<TService, TImplementation>(this Container container)
+		where TService : class
+		where TImplementation : class, TService
+	{
+		container.Register<TService, TImplementation>(Lifestyle.Scoped);
+	}
+
+	public static void RegisterTransient<TService, TImplementation>(this Container container)
+		where TService : class
+		where TImplementation : class, TService
+	{
+		container.Register<TService, TImplementation>(Lifestyle.Transient);
+	}
 }
