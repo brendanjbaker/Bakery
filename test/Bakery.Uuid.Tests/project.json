@@ -3,7 +3,7 @@
 		"debugType": "portable"
 	},
 	"dependencies": {
-		"Bakery.Uuid": "0.14.1",
+		"Bakery.Uuid": "0.15",
 		"xunit": "2.2.0",
 		"dotnet-test-xunit": "2.2.0-preview3-build1047"
 	},
