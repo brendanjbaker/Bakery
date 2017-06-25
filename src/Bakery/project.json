@@ -1,23 +1,23 @@
 {
 	"authors": [ "baker" ],
 	"dependencies": {
-		"Bakery.Caching": "0.15",
-		"Bakery.Collections": "0.15",
-		"Bakery.Composition.Microsoft": "0.15",
-		"Bakery.Composition.SimpleInjector": "0.15",
-		"Bakery.Events": "0.15",
-		"Bakery.Events.Amazon": "0.15",
-		"Bakery.Exceptions": "0.15",
-		"Bakery.Logging": "0.15",
-		"Bakery.Mail": "0.15",
-		"Bakery.Mail.MailKit": "0.15",
-		"Bakery.Processes": "0.15",
-		"Bakery.Properties": "0.15",
-		"Bakery.Security": "0.15",
-		"Bakery.Text": "0.15",
-		"Bakery.Text.Json": "0.15",
-		"Bakery.Time": "0.15",
-		"Bakery.Uuid": "0.15",
+		"Bakery.Caching": "0.15.1",
+		"Bakery.Collections": "0.15.1",
+		"Bakery.Composition.Microsoft": "0.15.1",
+		"Bakery.Composition.SimpleInjector": "0.15.1",
+		"Bakery.Events": "0.15.1",
+		"Bakery.Events.Amazon": "0.15.1",
+		"Bakery.Exceptions": "0.15.1",
+		"Bakery.Logging": "0.15.1",
+		"Bakery.Mail": "0.15.1",
+		"Bakery.Mail.MailKit": "0.15.1",
+		"Bakery.Processes": "0.15.1",
+		"Bakery.Properties": "0.15.1",
+		"Bakery.Security": "0.15.1",
+		"Bakery.Text": "0.15.1",
+		"Bakery.Text.Json": "0.15.1",
+		"Bakery.Time": "0.15.1",
+		"Bakery.Uuid": "0.15.1",
 		"NETStandard.Library": "1.6.1"
 	},
 	"description": "Bakery Class Library",
@@ -32,5 +32,5 @@
 			"url": "http://github.com/brendanjbaker/bakery"
 		}
 	},
-	"version": "0.15"
+	"version": "0.15.1"
 }
