@@ -1,6 +1,5 @@
 ﻿namespace Bakery.Processes
 {
-	using Specification.Builder;
 	using System;
 	using System.Text;
 	using System.Threading.Tasks;
@@ -11,20 +10,17 @@
 		[Fact]
 		public async Task EchoWithCombinedOutput()
 		{
-			var processSpecification =
-				ProcessSpecificationBuilder.Create()
-					.WithProgram(@"echo")
+			var process = await new ProcessFactory().RunAsync(builder =>
+			{
+				return builder
+					.WithProgram("echo")
 					.WithArguments("a", "b", "c")
 					.WithEnvironment()
 					.WithCombinedOutput()
 					.Build();
+			});
 
-			var processFactory = new ProcessFactory();
-
-			var process = processFactory.Start(processSpecification);
 			var stringBuilder = new StringBuilder();
-
-			await process.WaitForExit(TimeSpan.FromSeconds(5));
 
 			while (true)
 			{
