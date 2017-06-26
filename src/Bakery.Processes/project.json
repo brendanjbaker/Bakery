@@ -1,6 +1,6 @@
 ﻿{
 	"dependencies": {
-		"Bakery.Collections": "0.15.2",
+		"Bakery.Collections": "0.15.3",
 		"NETStandard.Library": "1.6.1",
 		"System.Diagnostics.Process": "4.3.0"
 	},
@@ -9,5 +9,5 @@
 			"imports": "dnxcore50"
 		}
 	},
-	"version": "0.15.2"
+	"version": "0.15.3"
 }
