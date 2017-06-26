@@ -9,25 +9,25 @@
 		: IEmailClient
 	{
 		private readonly IMimeMessageFactory mimeMessageFactory;
-		private readonly SmtpClient smtpClient;
+		private readonly Func<SmtpClient> smtpClientFactory;
 		private readonly ISmtpConfiguration smtpConfiguration;
 
 		public MailKitEmailClient(
 			IMimeMessageFactory mimeMessageFactory,
-			SmtpClient smtpClient,
+			Func<SmtpClient> smtpClientFactory,
 			ISmtpConfiguration smtpConfiguration)
 		{
 			if (mimeMessageFactory == null)
 				throw new ArgumentNullException(nameof(mimeMessageFactory));
 
-			if (smtpClient == null)
-				throw new ArgumentNullException(nameof(smtpClient));
+			if (smtpClientFactory == null)
+				throw new ArgumentNullException(nameof(smtpClientFactory));
 
 			if (smtpConfiguration == null)
 				throw new ArgumentNullException(nameof(smtpConfiguration));
 
 			this.mimeMessageFactory = mimeMessageFactory;
-			this.smtpClient = smtpClient;
+			this.smtpClientFactory = smtpClientFactory;
 			this.smtpConfiguration = smtpConfiguration;
 		}
 
@@ -38,18 +38,21 @@
 
 			var mimeMessage = mimeMessageFactory.Create(email);
 
-			await smtpClient.ConnectAsync(
-				smtpConfiguration.Server,
-				smtpConfiguration.Port,
-				SecureSocketOptions.StartTls);
+			using (var smtpClient = smtpClientFactory())
+			{
+				await smtpClient.ConnectAsync(
+					smtpConfiguration.Server,
+					smtpConfiguration.Port,
+					SecureSocketOptions.StartTls);
 
-			await smtpClient.AuthenticateAsync(
-				smtpConfiguration.Username,
-				smtpConfiguration.Password);
+				await smtpClient.AuthenticateAsync(
+					smtpConfiguration.Username,
+					smtpConfiguration.Password);
 
-			await smtpClient.SendAsync(mimeMessage);
+				await smtpClient.SendAsync(mimeMessage);
 
-			await smtpClient.DisconnectAsync(true);
+				await smtpClient.DisconnectAsync(true);
+			}
 		}
 	}
 }
