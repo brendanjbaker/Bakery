@@ -1,7 +1,7 @@
 {
 	"dependencies": {
-		"Bakery.Security": "0.15.3",
-		"Bakery.Text": "0.15.3",
+		"Bakery.Security": "0.16",
+		"Bakery.Text": "0.16",
 		"NETStandard.Library": "1.6.1",
 		"System.ComponentModel.TypeConverter": "4.3.0"
 	},
@@ -10,5 +10,5 @@
 			"imports": "dnxcore50"
 		}
 	},
-	"version": "0.15.3"
+	"version": "0.16"
 }
