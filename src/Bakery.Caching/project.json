@@ -1,6 +1,6 @@
 {
 	"dependencies": {
-		"Bakery.Time": "0.16",
+		"Bakery.Time": "0.17",
 		"NETStandard.Library": "1.6.1"
 	},
 	"frameworks": {
@@ -8,5 +8,5 @@
 			"imports": "dnxcore50"
 		}
 	},
-	"version": "0.16"
+	"version": "0.17"
 }
