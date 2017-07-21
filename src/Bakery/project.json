@@ -8,6 +8,7 @@
 		"Bakery.Events": "0.15.3",
 		"Bakery.Events.Amazon": "0.15.3",
 		"Bakery.Exceptions": "0.15.3",
+		"Bakery.Hashing": "0.15.3",
 		"Bakery.Logging": "0.15.3",
 		"Bakery.Mail": "0.15.3",
 		"Bakery.Mail.MailKit": "0.15.3",
