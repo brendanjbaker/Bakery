@@ -32,6 +32,11 @@ public static class ContainerExtensions
 		}
 	}
 
+	public static void RegisterCqrs(this Container container)
+	{
+		container.RegisterSingleton<IDispatcher, Dispatcher>();
+	}
+
 	public static void RegisterQuery<TQuery, TResult, TQueryHandler>(this Container container)
 		where TQuery : IQuery<TResult>
 		where TQueryHandler : class, IQueryHandler<TQuery, TResult>
