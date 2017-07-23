@@ -1,0 +1,14 @@
+﻿{
+	"dependencies": {
+		"Bakery.Caching": "0.18",
+		"Bakery.Collections": "0.18",
+		"Microsoft.CSharp": "4.0.1",
+		"NETStandard.Library": "1.6.1"
+	},
+	"frameworks": {
+		"netstandard1.5": {
+			"imports": "dnxcore50"
+		}
+	},
+	"version": "0.18"
+}

@@ -1,0 +1,13 @@
+﻿{
+	"dependencies": {
+		"Bakery.Cqrs": "0.18",
+		"NETStandard.Library": "1.6.1",
+		"SimpleInjector": "4.0.8"
+	},
+	"frameworks": {
+		"netstandard1.5": {
+			"imports": "dnxcore50"
+		}
+	},
+	"version": "0.18"
+}
