@@ -1,5 +1,6 @@
 ﻿using Bakery.Cqrs;
 using SimpleInjector;
+using System.Reflection;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -10,8 +11,10 @@ public class ContainerExtensionsTests
 	{
 		var container = new Container();
 
-		container.RegisterCommandHandler<TestCommandHandler>();
-		container.RegisterSingleton<IDispatcher, Dispatcher>();
+		container.RegisterCqrs(options =>
+		{
+			options.ScanAssembly(typeof(ContainerExtensionsTests).GetTypeInfo().Assembly);
+		});
 
 		container.Verify();
 
@@ -28,8 +31,10 @@ public class ContainerExtensionsTests
 	{
 		var container = new Container();
 
-		container.RegisterQueryHandler<TestQueryHandler>();
-		container.RegisterSingleton<IDispatcher, Dispatcher>();
+		container.RegisterCqrs(options =>
+		{
+			options.ScanAssembly(typeof(ContainerExtensionsTests).GetTypeInfo().Assembly);
+		});
 
 		container.Verify();
 
@@ -38,6 +43,6 @@ public class ContainerExtensionsTests
 
 		var result = await dispatcher.QueryAsync(new TestQuery());
 
-		Assert.Equal("Test", result);
+		Assert.True(handler.HasReceivedQuery);
 	}
 }
