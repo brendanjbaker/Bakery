@@ -39,7 +39,7 @@
 				throw new ArgumentNullException(nameof(query));
 
 			var handlerType = typeof(IQueryHandler<,>).MakeGenericType(query.GetType(), typeof(TResult));
-			var handlers = container.GetAllInstances(handlerType);
+			var handlers = container.GetAllInstances(handlerType).ToArray();
 
 			if (!handlers.Any())
 				throw new NoRegistrationFoundException(query.GetType());
