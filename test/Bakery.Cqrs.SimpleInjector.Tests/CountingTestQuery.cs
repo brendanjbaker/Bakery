@@ -1,6 +1,6 @@
 ﻿using Bakery.Cqrs;
 using System;
 
-public struct TestQuery
+public struct CountingTestQuery
 	: IQuery<String>
 { }
