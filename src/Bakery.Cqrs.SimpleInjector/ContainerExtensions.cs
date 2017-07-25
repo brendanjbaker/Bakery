@@ -14,7 +14,9 @@ public static class ContainerExtensions
 		if (options == null)
 			throw new ArgumentNullException(nameof(options));
 
-		container.RegisterSingleton<IDispatcher, SimpleInjectorDispatcher>();
+		container.RegisterSingleton<IDispatcher, Dispatcher>();
+		container.RegisterSingleton<ICommandDispatcher, SimpleInjectorCommandDispatcher>();
+		container.RegisterSingleton<IQueryDispatcher, SimpleInjectorQueryDispatcher>();
 
 		options.Invoke(new RegistrationOptions(container));
 	}

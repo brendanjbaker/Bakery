@@ -45,4 +45,30 @@ public class ContainerExtensionsTests
 
 		Assert.True(handler.HasReceivedQuery);
 	}
+
+	[Fact]
+	public async Task EnableCaching()
+	{
+		var container = new Container();
+
+		container.RegisterCqrs(cqrsOptions =>
+		{
+			cqrsOptions.ScanAssembly(typeof(ContainerExtensionsTests).GetTypeInfo().Assembly);
+
+			cqrsOptions.EnableCaching(cachingOptions =>
+			{
+				cachingOptions.AddQuery<RandomGuidQuery>();
+			});
+		});
+
+		container.Verify();
+
+		var handler = container.GetInstance<CountingTestQueryHandler>();
+		var dispatcher = container.GetInstance<IDispatcher>();
+
+		var guid1 = await dispatcher.QueryAsync(new RandomGuidQuery());
+		var guid2 = await dispatcher.QueryAsync(new RandomGuidQuery());
+
+		Assert.Equal(guid1, guid2);
+	}
 }

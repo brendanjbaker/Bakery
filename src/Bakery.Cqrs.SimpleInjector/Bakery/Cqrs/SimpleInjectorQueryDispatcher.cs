@@ -5,32 +5,17 @@
 	using System.Linq;
 	using System.Threading.Tasks;
 
-	public class SimpleInjectorDispatcher
-		: IDispatcher
+	public class SimpleInjectorQueryDispatcher
+		: IQueryDispatcher
 	{
 		private readonly Container container;
 
-		public SimpleInjectorDispatcher(Container container)
+		public SimpleInjectorQueryDispatcher(Container container)
 		{
 			if (container == null)
 				throw new ArgumentNullException(nameof(container));
 
 			this.container = container;
-		}
-
-		public async Task CommandAsync<TCommand>(TCommand command)
-			where TCommand : ICommand
-		{
-			if (command == null)
-				throw new ArgumentNullException(nameof(command));
-
-			var handlers = container.GetAllInstances<ICommandHandler<TCommand>>().ToArray();
-
-			if (!handlers.Any())
-				throw new NoRegistrationFoundException(typeof(TCommand));
-
-			foreach (var handler in handlers)
-				await handler.HandleAsync(command);
 		}
 
 		public async Task<TResult> QueryAsync<TResult>(IQuery<TResult> query)
@@ -41,7 +26,7 @@
 			var handlerType = typeof(IQueryHandler<,>).MakeGenericType(query.GetType(), typeof(TResult));
 			var handlers = container.GetAllInstances(handlerType).ToArray();
 
-			if (!handlers.Any())
+			if (handlers.None())
 				throw new NoRegistrationFoundException(query.GetType());
 
 			if (handlers.Multiple())

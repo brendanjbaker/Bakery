@@ -1,9 +1,11 @@
 ﻿namespace Bakery.Cqrs
 {
+	using Caching;
 	using SimpleInjector;
 	using SimpleInjector.Advanced;
 	using System;
 	using System.Reflection;
+	using Time;
 
 	public class RegistrationOptions
 	{
@@ -15,6 +17,22 @@
 				throw new ArgumentNullException(nameof(container));
 
 			this.container = container;
+		}
+
+		public void EnableCaching(Action<CachingOptions> options)
+		{
+			if (options == null)
+				throw new ArgumentNullException(nameof(options));
+
+			var cachingOptions = new CachingOptions(container);
+
+			options(cachingOptions);
+
+			var cachingConfiguration = new CachingConfiguration(cachingOptions.Registrations);
+
+			container.RegisterSingleton<ICachingConfiguration>(cachingConfiguration);
+			container.RegisterSingleton<IQueryCache>(new QueryCache(new KeyedCache<Object, Object>(() => new DurationCache<Object>(new SystemClock(), TimeSpan.FromDays(365 * 100))), cachingConfiguration));
+			container.RegisterDecorator<IQueryDispatcher, CachingQueryDispatcher>(Lifestyle.Singleton);
 		}
 
 		public void ScanAssembly(Assembly assembly)
