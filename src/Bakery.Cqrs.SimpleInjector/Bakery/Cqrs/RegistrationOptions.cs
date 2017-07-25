@@ -1,6 +1,5 @@
 ﻿namespace Bakery.Cqrs
 {
-	using Caching;
 	using SimpleInjector;
 	using SimpleInjector.Advanced;
 	using System;
@@ -31,7 +30,8 @@
 			var cachingConfiguration = new CachingConfiguration(cachingOptions.Registrations);
 
 			container.RegisterSingleton<ICachingConfiguration>(cachingConfiguration);
-			container.RegisterSingleton<IQueryCache>(new QueryCache(new KeyedCache<Object, Object>(() => new DurationCache<Object>(new SystemClock(), TimeSpan.FromDays(365 * 100))), cachingConfiguration));
+			container.RegisterSingleton<IClock, SystemClock>();
+			container.RegisterSingleton<IQueryCache>(new QueryCache(cachingConfiguration));
 			container.RegisterDecorator<IQueryDispatcher, CachingQueryDispatcher>(Lifestyle.Singleton);
 		}
 

@@ -1,9 +1,11 @@
 ﻿namespace Bakery.Cqrs
 {
+	using Caching;
 	using SimpleInjector;
 	using System;
 	using System.Collections.Generic;
 	using System.Reflection;
+	using Time;
 
 	public class CachingOptions
 	{
@@ -21,20 +23,28 @@
 
 		internal IEnumerable<ICachingRegistration> Registrations => registrations;
 
-		public void AddQuery<TQuery>()
+		public void AddQuery<TQuery>() => AddQuery(typeof(TQuery));
+
+		public void AddQuery<TQuery>(TimeSpan duration) => AddQuery(typeof(TQuery), duration);
+
+		public void AddQuery(Type queryType)
 		{
-			AddQuery(typeof(TQuery));
+			AssertIsQueryType(queryType);
+
+			registrations.Add(new CachingRegistration(queryType, () => new InfiniteCache<Object>()));
 		}
 
-		public void AddQuery(params Type[] queryTypes)
+		public void AddQuery(Type queryType, TimeSpan duration)
 		{
-			foreach (var queryType in queryTypes)
-			{
-				if (!IsQueryType(queryType))
-					throw new InvalidOperationException($"{queryType.Name} does not implement {typeof(IQuery<>).Name}.");
+			AssertIsQueryType(queryType);
 
-				registrations.Add(new CachingRegistration(queryType));
-			}
+			registrations.Add(new CachingRegistration(queryType, () => new DurationCache<Object>(container.GetInstance<IClock>(), duration)));
+		}
+
+		private static void AssertIsQueryType(Type type)
+		{
+			if (!IsQueryType(type))
+				throw new InvalidOperationException($"{type.Name} does not implement {typeof(IQuery<>).Name}.");
 		}
 
 		private static Boolean IsQueryType(Type type)

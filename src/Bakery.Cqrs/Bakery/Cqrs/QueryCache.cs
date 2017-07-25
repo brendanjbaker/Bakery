@@ -2,34 +2,37 @@
 {
 	using Caching;
 	using System;
+	using System.Collections.Generic;
 
 	public class QueryCache
 		: IQueryCache
 	{
-		private readonly IKeyedCache<Object, Object> cache;
+		private readonly IDictionary<Object, ICache<Object>> cache;
 		private readonly ICachingConfiguration cachingConfiguration;
 
-		public QueryCache(IKeyedCache<Object, Object> cache, ICachingConfiguration cachingConfiguration)
+		public QueryCache(ICachingConfiguration cachingConfiguration)
 		{
-			if (cache == null)
-				throw new ArgumentNullException(nameof(cache));
-
 			if (cachingConfiguration == null)
 				throw new ArgumentNullException(nameof(cachingConfiguration));
 
-			this.cache = cache;
+			this.cache = new Dictionary<Object, ICache<Object>>();
 			this.cachingConfiguration = cachingConfiguration;
 		}
 
 		public Object TryRead(Object query)
 		{
+			ICache<Object> cache;
+
 			if (query == null)
 				throw new ArgumentNullException(nameof(query));
 
 			if (!cachingConfiguration.IsEnabledForQueryType(query.GetType()))
 				return null;
 
-			return cache.TryRead(query);
+			if (this.cache.TryGetValue(query, out cache))
+				return cache.TryRead();
+
+			return null;
 		}
 
 		public void Write(Object query, Object result)
@@ -37,10 +40,15 @@
 			if (query == null)
 				throw new ArgumentNullException(nameof(query));
 
+			var queryType = query.GetType();
+
 			if (!cachingConfiguration.IsEnabledForQueryType(query.GetType()))
 				return;
 
-			cache.Write(query, result);
+			if (!cache.ContainsKey(query))
+				cache[query] = cachingConfiguration.CreateCache(queryType);
+
+			cache[query].Write(result);
 		}
 	}
 }

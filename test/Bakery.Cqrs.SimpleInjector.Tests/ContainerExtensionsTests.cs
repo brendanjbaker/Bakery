@@ -1,5 +1,6 @@
 ﻿using Bakery.Cqrs;
 using SimpleInjector;
+using System;
 using System.Reflection;
 using System.Threading.Tasks;
 using Xunit;
@@ -57,7 +58,7 @@ public class ContainerExtensionsTests
 
 			cqrsOptions.EnableCaching(cachingOptions =>
 			{
-				cachingOptions.AddQuery<RandomGuidQuery>();
+				cachingOptions.AddQuery<RandomGuidQuery>(TimeSpan.FromMinutes(1));
 			});
 		});
 
