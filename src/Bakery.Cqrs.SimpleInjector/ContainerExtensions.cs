@@ -18,6 +18,6 @@ public static class ContainerExtensions
 		container.RegisterSingleton<ICommandDispatcher, SimpleInjectorCommandDispatcher>();
 		container.RegisterSingleton<IQueryDispatcher, SimpleInjectorQueryDispatcher>();
 
-		options.Invoke(new RegistrationOptions(container));
+		options(new RegistrationOptions(container));
 	}
 }
