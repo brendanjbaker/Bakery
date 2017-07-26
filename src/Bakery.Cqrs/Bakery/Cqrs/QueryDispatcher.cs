@@ -1,5 +1,6 @@
 ﻿namespace Bakery.Cqrs
 {
+	using Exception;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -27,10 +28,10 @@
 			var matching = GetMatchingRegistrations(queryType);
 
 			if (matching.None())
-				throw new NoRegistrationFoundException(queryType);
+				throw new MissingRegistrationException(queryType);
 
 			if (matching.Multiple())
-				throw new MultipleRegistrationsFoundException(queryType);
+				throw new DuplicateRegistrationException(queryType);
 
 			var result = await matching.Single().ExecuteAsync(query);
 

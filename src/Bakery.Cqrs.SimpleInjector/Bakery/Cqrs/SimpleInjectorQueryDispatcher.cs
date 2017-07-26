@@ -1,5 +1,6 @@
 ﻿namespace Bakery.Cqrs
 {
+	using Exception;
 	using SimpleInjector;
 	using System;
 	using System.Linq;
@@ -27,10 +28,10 @@
 			var handlers = container.GetAllInstances(handlerType).ToArray();
 
 			if (handlers.None())
-				throw new NoRegistrationFoundException(query.GetType());
+				throw new MissingRegistrationException(query.GetType());
 
 			if (handlers.Multiple())
-				throw new MultipleRegistrationsFoundException(query.GetType());
+				throw new DuplicateRegistrationException(query.GetType());
 
 			dynamic handler = handlers.Single();
 

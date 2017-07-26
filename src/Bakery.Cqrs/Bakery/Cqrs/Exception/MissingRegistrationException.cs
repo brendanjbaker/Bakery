@@ -1,13 +1,13 @@
-﻿namespace Bakery.Cqrs
+﻿namespace Bakery.Cqrs.Exception
 {
 	using System;
 
-	public class NoRegistrationFoundException
+	public class MissingRegistrationException
 		: InvalidOperationException
 	{
 		private readonly Type type;
 
-		public NoRegistrationFoundException(Type type)
+		public MissingRegistrationException(Type type)
 		{
 			this.type = type;
 		}

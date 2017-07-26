@@ -1,6 +1,7 @@
 ﻿namespace Bakery.Cqrs
 {
 	using Configuration;
+	using Exception;
 	using SimpleInjector;
 	using System;
 	using System.Linq;
@@ -33,11 +34,11 @@
 			var handlers = container.GetAllInstances<ICommandHandler<TCommand>>().ToArray();
 
 			if (handlers.None())
-				throw new NoRegistrationFoundException(typeof(TCommand));
+				throw new MissingRegistrationException(typeof(TCommand));
 
 			if (!configuration.AllowMultipleCommandDispatch)
 				if (handlers.Multiple())
-					throw new MultipleRegistrationsFoundException(typeof(TCommand));
+					throw new DuplicateRegistrationException(typeof(TCommand));
 
 			await Task.WhenAll(
 				handlers.Select(

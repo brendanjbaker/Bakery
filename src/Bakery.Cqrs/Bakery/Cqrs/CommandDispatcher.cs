@@ -1,5 +1,6 @@
 ﻿namespace Bakery.Cqrs
 {
+	using Exception;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -27,7 +28,7 @@
 			var matching = GetMatchingRegistrations<TCommand>();
 
 			if (matching.None())
-				throw new NoRegistrationFoundException(typeof(TCommand));
+				throw new MissingRegistrationException(typeof(TCommand));
 
 			await Task.WhenAll(
 				matching.Select(
