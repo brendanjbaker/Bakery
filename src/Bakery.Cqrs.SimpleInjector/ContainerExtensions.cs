@@ -1,25 +1,28 @@
 ﻿using Bakery.Cqrs;
+using Bakery.Cqrs.Configuration;
 using SimpleInjector;
 using SimpleInjector.Advanced;
 using System;
+using System.Reflection;
 
 public static class ContainerExtensions
 {
-	public static void RegisterCqrs(this Container container)
+	public static void RegisterCqrs(this Container container, IConfiguration configuration)
 	{
-		container.RegisterCqrs(options => { });
-	}
-
-	public static void RegisterCqrs(this Container container, Action<RegistrationOptions> options)
-	{
-		if (options == null)
-			throw new ArgumentNullException(nameof(options));
+		if (configuration == null)
+			throw new ArgumentNullException(nameof(configuration));
 
 		container.RegisterSingleton<IDispatcher, Dispatcher>();
 		container.RegisterSingleton<ICommandDispatcher, SimpleInjectorCommandDispatcher>();
 		container.RegisterSingleton<IQueryDispatcher, SimpleInjectorQueryDispatcher>();
 
-		options(new RegistrationOptions(container));
+		container.RegisterSingleton(configuration);
+
+		if (configuration.CachingConfiguration != null)
+		{
+			container.RegisterDecorator<IQueryDispatcher, CachingQueryDispatcher>(Lifestyle.Singleton);
+			container.RegisterSingleton(configuration.CachingConfiguration);
+		}
 	}
 
 	public static void RegisterCommandHandler<TCommandHandler>(this Container container)
@@ -35,6 +38,17 @@ public static class ContainerExtensions
 		RegisterHandler(container, typeof(ICommandHandler<>), commandHandlerType);
 	}
 
+	public static void RegisterCommandHandlers(this Container container, Assembly assembly)
+	{
+		RegisterHandlers(container, typeof(ICommandHandler<>), assembly);
+	}
+
+	public static void RegisterHandlers(this Container container, Assembly assembly)
+	{
+		container.RegisterCommandHandlers(assembly);
+		container.RegisterQueryHandlers(assembly);
+	}
+
 	public static void RegisterQueryHandler<TQueryHandler>(this Container container)
 		where TQueryHandler : IQueryHandler
 	{
@@ -48,6 +62,11 @@ public static class ContainerExtensions
 		RegisterHandler(container, typeof(IQueryHandler<,>), queryHandlerType);
 	}
 
+	public static void RegisterQueryHandlers(this Container container, Assembly assembly)
+	{
+		RegisterHandlers(container, typeof(IQueryHandler<,>), assembly);
+	}
+
 	private static void RegisterHandler(Container container, Type serviceType, Type handlerType)
 	{
 		var registration =
@@ -57,5 +76,13 @@ public static class ContainerExtensions
 				container: container);
 
 		container.AppendToCollection(serviceType, registration);
+	}
+
+	private static void RegisterHandlers(Container container, Type serviceType, Assembly assembly)
+	{
+		var handlerTypes = container.GetTypesToRegister(serviceType, new[] { assembly });
+
+		foreach (var handlerType in handlerTypes)
+			RegisterHandler(container, serviceType, handlerType);
 	}
 }

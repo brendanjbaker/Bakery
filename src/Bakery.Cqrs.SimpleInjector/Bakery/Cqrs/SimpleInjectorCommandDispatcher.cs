@@ -1,5 +1,6 @@
 ﻿namespace Bakery.Cqrs
 {
+	using Configuration;
 	using SimpleInjector;
 	using System;
 	using System.Linq;
@@ -8,13 +9,18 @@
 	public class SimpleInjectorCommandDispatcher
 		: ICommandDispatcher
 	{
+		private readonly IConfiguration configuration;
 		private readonly Container container;
 
-		public SimpleInjectorCommandDispatcher(Container container)
+		public SimpleInjectorCommandDispatcher(IConfiguration configuration, Container container)
 		{
+			if (configuration == null)
+				throw new ArgumentNullException(nameof(configuration));
+
 			if (container == null)
 				throw new ArgumentNullException(nameof(container));
 
+			this.configuration = configuration;
 			this.container = container;
 		}
 
@@ -28,6 +34,10 @@
 
 			if (handlers.None())
 				throw new NoRegistrationFoundException(typeof(TCommand));
+
+			if (!configuration.AllowMultipleCommandDispatch)
+				if (handlers.Multiple())
+					throw new MultipleRegistrationsFoundException(typeof(TCommand));
 
 			await Task.WhenAll(
 				handlers.Select(

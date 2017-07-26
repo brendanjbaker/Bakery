@@ -1,6 +1,5 @@
 ﻿{
 	"dependencies": {
-		"Bakery.Caching": "0.20",
 		"Bakery.Collections": "0.20",
 		"Microsoft.CSharp": "4.0.1",
 		"NETStandard.Library": "1.6.1"
