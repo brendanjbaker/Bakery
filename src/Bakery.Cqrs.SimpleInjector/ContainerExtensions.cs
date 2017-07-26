@@ -13,8 +13,9 @@ public static class ContainerExtensions
 			throw new ArgumentNullException(nameof(configuration));
 
 		container.RegisterSingleton<IDispatcher, Dispatcher>();
-		container.RegisterSingleton<ICommandDispatcher, SimpleInjectorCommandDispatcher>();
-		container.RegisterSingleton<IQueryDispatcher, SimpleInjectorQueryDispatcher>();
+		container.RegisterSingleton<ICommandDispatcher, CommandDispatcher>();
+		container.RegisterSingleton<IQueryDispatcher, QueryDispatcher>();
+		container.RegisterSingleton<IHandlerResolver, SimpleInjectorHandlerResolver>();
 
 		container.RegisterSingleton(configuration);
 

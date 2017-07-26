@@ -2,21 +2,20 @@
 {
 	using Exception;
 	using System;
-	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
 
 	public class QueryDispatcher
 		: IQueryDispatcher
 	{
-		private readonly IEnumerable<IRegistration> registrations;
+		private readonly IHandlerResolver handlerResolver;
 
-		public QueryDispatcher(IEnumerable<IRegistration> registrations)
+		public QueryDispatcher(IHandlerResolver handlerResolver)
 		{
-			if (registrations == null)
-				throw new ArgumentNullException(nameof(registrations));
+			if (handlerResolver == null)
+				throw new ArgumentNullException(nameof(handlerResolver));
 
-			this.registrations = registrations;
+			this.handlerResolver = handlerResolver;
 		}
 
 		public async Task<TResult> QueryAsync<TResult>(IQuery<TResult> query)
@@ -25,22 +24,18 @@
 				throw new ArgumentNullException(nameof(query));
 
 			var queryType = query.GetType();
-			var matching = GetMatchingRegistrations(queryType);
+			var handlerType = typeof(IQueryHandler<,>).MakeGenericType(queryType, typeof(TResult));
+			var handlers = handlerResolver.GetHandlers(handlerType);
 
-			if (matching.None())
+			if (handlers.None())
 				throw new MissingRegistrationException(queryType);
 
-			if (matching.Multiple())
+			if (handlers.Multiple())
 				throw new DuplicateRegistrationException(queryType);
 
-			var result = await matching.Single().ExecuteAsync(query);
+			var handler = handlers.Single() as dynamic;
 
-			return (TResult)result;
-		}
-
-		private IRegistration[] GetMatchingRegistrations(Type queryType)
-		{
-			return registrations.Where(r => r.Type == queryType).ToArray();
+			return await handler.HandleAsync(query as dynamic);
 		}
 	}
 }

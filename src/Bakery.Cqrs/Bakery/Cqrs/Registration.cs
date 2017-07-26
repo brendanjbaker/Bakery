@@ -91,7 +91,7 @@
 
 		public Type Type => type;
 
-		public async Task<Object> ExecuteAsync(Object @object)
+		public async Task<Object> HandleAsync(Object @object)
 		{
 			if (@object == null)
 				throw new ArgumentNullException(nameof(@object));

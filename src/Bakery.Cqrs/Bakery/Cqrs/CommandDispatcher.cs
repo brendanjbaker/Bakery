@@ -1,22 +1,26 @@
 ﻿namespace Bakery.Cqrs
 {
+	using Configuration;
 	using Exception;
 	using System;
-	using System.Collections.Generic;
-	using System.Linq;
 	using System.Threading.Tasks;
 
 	public class CommandDispatcher
 		: ICommandDispatcher
 	{
-		private readonly IEnumerable<IRegistration> registrations;
+		private readonly IConfiguration configuration;
+		private readonly IHandlerResolver handlerResolver;
 
-		public CommandDispatcher(IEnumerable<IRegistration> registrations)
+		public CommandDispatcher(IConfiguration configuration, IHandlerResolver handlerResolver)
 		{
-			if (registrations == null)
-				throw new ArgumentNullException(nameof(registrations));
+			if (configuration == null)
+				throw new ArgumentNullException(nameof(configuration));
 
-			this.registrations = registrations;
+			if (handlerResolver == null)
+				throw new ArgumentNullException(nameof(handlerResolver));
+
+			this.configuration = configuration;
+			this.handlerResolver = handlerResolver;
 		}
 
 		public async Task CommandAsync<TCommand>(TCommand command)
@@ -25,19 +29,19 @@
 			if (command == null)
 				throw new ArgumentNullException(nameof(command));
 
-			var matching = GetMatchingRegistrations<TCommand>();
+			var commandType = typeof(TCommand);
+			var handlerType = typeof(ICommandHandler<>).MakeGenericType(commandType);
+			var handlers = handlerResolver.GetHandlers(handlerType);
 
-			if (matching.None())
-				throw new MissingRegistrationException(typeof(TCommand));
+			if (handlers.None())
+				throw new MissingRegistrationException(commandType);
 
-			await Task.WhenAll(
-				matching.Select(
-					m => m.ExecuteAsync(command)));
-		}
+			if (!configuration.AllowMultipleCommandDispatch)
+				if (handlers.Multiple())
+					throw new DuplicateRegistrationException(commandType);
 
-		private IRegistration[] GetMatchingRegistrations<TCommand>()
-		{
-			return registrations.Where(r => r.Type == typeof(TCommand)).ToArray();
+			foreach (dynamic handler in handlers)
+				await handler.HandleAsync(command as dynamic);
 		}
 	}
 }
