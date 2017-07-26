@@ -24,11 +24,17 @@
 		public async Task CommandAsync<TCommand>(TCommand command)
 			where TCommand : ICommand
 		{
+			if (command == null)
+				throw new ArgumentNullException(nameof(command));
+
 			await commandDispatcher.CommandAsync(command);
 		}
 
 		public async Task<TResult> QueryAsync<TResult>(IQuery<TResult> query)
 		{
+			if (query == null)
+				throw new ArgumentNullException(nameof(query));
+
 			return await queryDispatcher.QueryAsync(query);
 		}
 	}

@@ -9,6 +9,9 @@
 
 		public MissingRegistrationException(Type type)
 		{
+			if (type == null)
+				throw new ArgumentNullException(nameof(type));
+
 			this.type = type;
 		}
 
