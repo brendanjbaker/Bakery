@@ -4,7 +4,6 @@
 	using SimpleInjector;
 	using System;
 	using System.Collections.Generic;
-	using System.Reflection;
 	using Time;
 
 	public class CachingOptions
@@ -43,18 +42,8 @@
 
 		private static void AssertIsQueryType(Type type)
 		{
-			if (!IsQueryType(type))
+			if (!type.IsQuery())
 				throw new InvalidOperationException($"{type.Name} does not implement {typeof(IQuery<>).Name}.");
-		}
-
-		private static Boolean IsQueryType(Type type)
-		{
-			foreach (var @interface in type.GetTypeInfo().GetInterfaces())
-				if (@interface.GetTypeInfo().IsGenericType)
-					if (@interface.GetTypeInfo().GetGenericTypeDefinition() == typeof(IQuery<>))
-						return true;
-
-			return false;
 		}
 	}
 }
