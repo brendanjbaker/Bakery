@@ -3,8 +3,8 @@
 		"debugType": "portable"
 	},
 	"dependencies": {
-		"Bakery.Caching": "0.20",
-		"Bakery.Cqrs.SimpleInjector": "0.20",
+		"Bakery.Caching": "0.21",
+		"Bakery.Cqrs.SimpleInjector": "0.21",
 		"dotnet-test-xunit": "2.2.0-preview3-build1047",
 		"xunit": "2.2.0"
 	},
