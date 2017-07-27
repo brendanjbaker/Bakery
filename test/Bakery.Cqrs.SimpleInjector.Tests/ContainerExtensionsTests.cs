@@ -1,6 +1,8 @@
 ﻿using Bakery.Cqrs;
 using Bakery.Cqrs.Configuration;
 using Bakery.Time;
+using Command;
+using Command.Handler;
 using SimpleInjector;
 using System;
 using System.Collections.Generic;
@@ -75,5 +77,31 @@ public class ContainerExtensionsTests
 		var guid2 = await dispatcher.QueryAsync(new RandomGuidQuery());
 
 		Assert.Equal(guid1, guid2);
+	}
+
+	[Fact]
+	public async Task RegisterCommandHandler_WithMultipleImplementations()
+	{
+		var container = new Container();
+
+		container.RegisterCqrs(CreateDefaultConfiguration());
+		container.RegisterCommandHandler<MultipleVoidCommandHandler>();
+		container.RegisterSingleton<MultipleVoidCommandHandler>();
+		container.Verify();
+
+		var dispatcher = container.GetInstance<IDispatcher>();
+		var handler = container.GetInstance<MultipleVoidCommandHandler>();
+
+		await dispatcher.CommandAsync(new VoidCommand1());
+		await dispatcher.CommandAsync(new VoidCommand2());
+
+		Assert.True(
+			handler.HasReceivedVoidCommand1 &&
+			handler.HasReceivedVoidCommand2);
+	}
+
+	private static IConfiguration CreateDefaultConfiguration()
+	{
+		return new Configuration(true);
 	}
 }
