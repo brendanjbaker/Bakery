@@ -1,11 +1,12 @@
-﻿{
+{
 	"buildOptions": {
 		"debugType": "portable"
 	},
 	"dependencies": {
-		"Bakery.Cqrs.SimpleInjector": "0.20",
-		"xunit": "2.2.0",
-		"dotnet-test-xunit": "2.2.0-preview3-build1047"
+		"Bakery.Caching": "0.21",
+		"Bakery.Cqrs.SimpleInjector": "0.21",
+		"dotnet-test-xunit": "2.2.0-preview3-build1047",
+		"xunit": "2.2.0"
 	},
 	"frameworks": {
 		"netcoreapp1.0": {

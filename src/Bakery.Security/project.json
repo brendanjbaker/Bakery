@@ -1,6 +1,6 @@
 {
 	"dependencies": {
-		"Bakery.Text": "0.20",
+		"Bakery.Text": "0.21",
 		"NETStandard.Library": "1.6.1",
 		"System.Security.Cryptography.Algorithms": "4.3.0"
 	},
@@ -9,5 +9,5 @@
 			"imports": "dnxcore50"
 		}
 	},
-	"version": "0.20"
+	"version": "0.21"
 }

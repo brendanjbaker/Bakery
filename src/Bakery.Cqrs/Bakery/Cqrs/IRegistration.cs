@@ -7,6 +7,6 @@
 	{
 		Type Type { get; }
 
-		Task<Object> ExecuteAsync(Object @object);
+		Task<Object> HandleAsync(Object @object);
 	}
 }

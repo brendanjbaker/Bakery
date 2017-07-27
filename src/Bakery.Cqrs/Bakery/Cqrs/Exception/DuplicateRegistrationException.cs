@@ -1,14 +1,17 @@
-﻿namespace Bakery.Cqrs
+﻿namespace Bakery.Cqrs.Exception
 {
 	using System;
 
-	public class MultipleRegistrationsFoundException
+	public class DuplicateRegistrationException
 		: InvalidOperationException
 	{
 		private readonly Type type;
 
-		public MultipleRegistrationsFoundException(Type type)
+		public DuplicateRegistrationException(Type type)
 		{
+			if (type == null)
+				throw new ArgumentNullException(nameof(type));
+
 			this.type = type;
 		}
 

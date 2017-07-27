@@ -20,6 +20,9 @@
 			if (duration < TimeSpan.Zero)
 				throw new ArgumentOutOfRangeException(nameof(duration));
 
+			if (duration == TimeSpan.MaxValue)
+				throw new ArgumentOutOfRangeException(nameof(duration));
+
 			this.clock = clock;
 			this.duration = duration;
 		}

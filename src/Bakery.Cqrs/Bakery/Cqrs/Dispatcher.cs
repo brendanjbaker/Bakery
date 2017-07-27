@@ -1,47 +1,41 @@
 ﻿namespace Bakery.Cqrs
 {
 	using System;
-	using System.Collections.Generic;
-	using System.Linq;
 	using System.Threading.Tasks;
 
 	public class Dispatcher
 		: IDispatcher
 	{
-		private readonly IEnumerable<IRegistration> registrations;
+		private readonly ICommandDispatcher commandDispatcher;
+		private readonly IQueryDispatcher queryDispatcher;
 
-		public Dispatcher(IEnumerable<IRegistration> registrations)
+		public Dispatcher(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher)
 		{
-			this.registrations = registrations;
+			if (commandDispatcher == null)
+				throw new ArgumentNullException(nameof(commandDispatcher));
+
+			if (queryDispatcher == null)
+				throw new ArgumentNullException(nameof(queryDispatcher));
+
+			this.commandDispatcher = commandDispatcher;
+			this.queryDispatcher = queryDispatcher;
 		}
 
 		public async Task CommandAsync<TCommand>(TCommand command)
 			where TCommand : ICommand
 		{
-			await GetRegistration(typeof(TCommand)).ExecuteAsync(command);
+			if (command == null)
+				throw new ArgumentNullException(nameof(command));
+
+			await commandDispatcher.CommandAsync(command);
 		}
 
 		public async Task<TResult> QueryAsync<TResult>(IQuery<TResult> query)
 		{
-			var result = await GetRegistration(query.GetType()).ExecuteAsync(query);
+			if (query == null)
+				throw new ArgumentNullException(nameof(query));
 
-			return (TResult)result;
-		}
-
-		private IRegistration GetRegistration(Type type)
-		{
-			var candidates =
-				registrations
-					.Where(r => r.Type == type)
-					.ToArray();
-
-			if (!candidates.Any())
-				throw new NoRegistrationFoundException(type);
-
-			if (candidates.Multiple())
-				throw new MultipleRegistrationsFoundException(type);
-
-			return candidates.Single();
+			return await queryDispatcher.QueryAsync(query);
 		}
 	}
 }
