@@ -13,7 +13,7 @@ using Xunit;
 public class ContainerExtensionsTests
 {
 	[Fact]
-	public async Task RegisterCommandHandler()
+	public async Task RegisterCommandHandlers()
 	{
 		var configuration = new Configuration(allowMultipleCommandDispatch: true);
 		var container = new Container();
@@ -32,7 +32,7 @@ public class ContainerExtensionsTests
 	}
 
 	[Fact]
-	public async Task RegisterQueryHandler()
+	public async Task RegisterQueryHandlers()
 	{
 		var configuration = new Configuration(allowMultipleCommandDispatch: true);
 		var container = new Container();
@@ -50,7 +50,7 @@ public class ContainerExtensionsTests
 	}
 
 	[Fact]
-	public async Task EnableCaching()
+	public async Task RegisterHandlers()
 	{
 		var queryCache = new QueryCache(new SystemClock());
 
