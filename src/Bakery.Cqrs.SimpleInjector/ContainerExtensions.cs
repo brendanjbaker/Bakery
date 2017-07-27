@@ -34,6 +34,9 @@ public static class ContainerExtensions
 
 	public static void RegisterCommandHandler(this Container container, Type commandHandlerType)
 	{
+		if (commandHandlerType == null)
+			throw new ArgumentNullException(nameof(commandHandlerType));
+
 		commandHandlerType.AssertImplementsInterface(typeof(ICommandHandler<>));
 
 		RegisterHandler(container, typeof(ICommandHandler<>), commandHandlerType);
@@ -41,11 +44,17 @@ public static class ContainerExtensions
 
 	public static void RegisterCommandHandlers(this Container container, Assembly assembly)
 	{
+		if (assembly == null)
+			throw new ArgumentNullException(nameof(assembly));
+
 		RegisterHandlers(container, typeof(ICommandHandler<>), assembly);
 	}
 
 	public static void RegisterHandlers(this Container container, Assembly assembly)
 	{
+		if (assembly == null)
+			throw new ArgumentNullException(nameof(assembly));
+
 		container.RegisterCommandHandlers(assembly);
 		container.RegisterQueryHandlers(assembly);
 	}
@@ -58,6 +67,9 @@ public static class ContainerExtensions
 
 	public static void RegisterQueryHandler(this Container container, Type queryHandlerType)
 	{
+		if (queryHandlerType == null)
+			throw new ArgumentNullException(nameof(queryHandlerType));
+
 		queryHandlerType.AssertImplementsInterface(typeof(IQueryHandler<,>));
 
 		RegisterHandler(container, typeof(IQueryHandler<,>), queryHandlerType);
@@ -65,6 +77,9 @@ public static class ContainerExtensions
 
 	public static void RegisterQueryHandlers(this Container container, Assembly assembly)
 	{
+		if (assembly == null)
+			throw new ArgumentNullException(nameof(assembly));
+
 		RegisterHandlers(container, typeof(IQueryHandler<,>), assembly);
 	}
 
