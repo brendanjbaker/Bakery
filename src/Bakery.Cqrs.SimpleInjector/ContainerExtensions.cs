@@ -1,5 +1,6 @@
 ﻿using Bakery.Cqrs;
 using Bakery.Cqrs.Configuration;
+using Bakery.Cqrs.Configuration.Builder;
 using SimpleInjector;
 using SimpleInjector.Advanced;
 using System;
@@ -7,6 +8,14 @@ using System.Reflection;
 
 public static class ContainerExtensions
 {
+	public static void RegisterCqrs(this Container container, Func<IConfigurationBuilder, IConfiguration> builder)
+	{
+		if (builder == null)
+			throw new ArgumentNullException(nameof(builder));
+
+		container.RegisterCqrs(builder(new ConfigurationBuilder()));
+	}
+
 	public static void RegisterCqrs(this Container container, IConfiguration configuration)
 	{
 		if (configuration == null)

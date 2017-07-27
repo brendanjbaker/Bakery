@@ -32,6 +32,46 @@ public class ContainerExtensionsTests
 	}
 
 	[Fact]
+	public async Task RegisterCqrs_WithConfigurationBuilder()
+	{
+		var queryCache = new QueryCache(new SystemClock());
+		var container = new Container();
+
+		container.RegisterCqrs(cqrs =>
+		{
+			cqrs
+				.AllowMultipleCommandDispatch()
+				.DisallowVoidCommandDispatch()
+				.EnableCaching(caching =>
+				{
+					caching
+						.SetDefaultLifetime(TimeSpan.FromMinutes(2))
+						.SetDefaultPriority(Priority.High)
+						.SetAdapter(
+							read: (query) => queryCache.TryRead(query),
+							write: (query, result, lifetime, priority) => queryCache.Write(query, result, lifetime));
+
+					caching
+						.Cache<TestQuery>(5.Minutes())
+						.Cache<RandomGuidQuery>(15.Seconds(), Priority.Low)
+						.Cache<CountingTestQuery>(Priority.Normal);
+
+					return caching.Build();
+				});
+
+			return cqrs.Build();
+		});
+
+		container.RegisterQueryHandler<RandomGuidQueryHandler>();
+
+		var dispatcher = container.GetInstance<IDispatcher>();
+		var guid1 = await dispatcher.QueryAsync(new RandomGuidQuery());
+		var guid2 = await dispatcher.QueryAsync(new RandomGuidQuery());
+
+		Assert.Equal(guid1, guid2);
+	}
+
+	[Fact]
 	public async Task RegisterQueryHandlers()
 	{
 		var configuration = new Configuration(allowMultipleCommandDispatch: true, allowVoidCommandDispatch: false);
