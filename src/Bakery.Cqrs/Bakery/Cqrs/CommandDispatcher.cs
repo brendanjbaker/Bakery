@@ -33,8 +33,9 @@
 			var handlerType = typeof(ICommandHandler<>).MakeGenericType(commandType);
 			var handlers = handlerResolver.GetHandlers(handlerType);
 
-			if (handlers.None())
-				throw new MissingRegistrationException(commandType);
+			if (!configuration.AllowVoidCommandDispatch)
+				if (handlers.None())
+					throw new MissingRegistrationException(commandType);
 
 			if (!configuration.AllowMultipleCommandDispatch)
 				if (handlers.Multiple())

@@ -15,7 +15,7 @@ public class ContainerExtensionsTests
 	[Fact]
 	public async Task RegisterCommandHandlers()
 	{
-		var configuration = new Configuration(allowMultipleCommandDispatch: true);
+		var configuration = new Configuration(allowMultipleCommandDispatch: true, allowVoidCommandDispatch: false);
 		var container = new Container();
 
 		container.RegisterCqrs(configuration);
@@ -34,7 +34,7 @@ public class ContainerExtensionsTests
 	[Fact]
 	public async Task RegisterQueryHandlers()
 	{
-		var configuration = new Configuration(allowMultipleCommandDispatch: true);
+		var configuration = new Configuration(allowMultipleCommandDispatch: true, allowVoidCommandDispatch: false);
 		var container = new Container();
 
 		container.RegisterCqrs(configuration);
@@ -56,6 +56,7 @@ public class ContainerExtensionsTests
 
 		var configuration = new Configuration(
 			allowMultipleCommandDispatch: true,
+			allowVoidCommandDispatch: false,
 			cachingConfiguration: new CachingConfiguration(
 				defaultLifetime: TimeSpan.FromMinutes(1),
 				defaultPriority: Priority.Normal,
@@ -102,6 +103,6 @@ public class ContainerExtensionsTests
 
 	private static IConfiguration CreateDefaultConfiguration()
 	{
-		return new Configuration(true);
+		return new Configuration(true, false);
 	}
 }

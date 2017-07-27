@@ -5,6 +5,7 @@
 	public interface IConfiguration
 	{
 		Boolean AllowMultipleCommandDispatch { get; }
+		Boolean AllowVoidCommandDispatch { get; }
 		ICachingConfiguration CachingConfiguration { get; }
 	}
 }
