@@ -55,11 +55,7 @@ public class ContainerExtensionsTests
 						.Cache<TestQuery>(5.Minutes())
 						.Cache<RandomGuidQuery>(15.Seconds(), Priority.Low)
 						.Cache<CountingTestQuery>(Priority.Normal);
-
-					return caching.Build();
 				});
-
-			return cqrs.Build();
 		});
 
 		container.RegisterQueryHandler<RandomGuidQueryHandler>();

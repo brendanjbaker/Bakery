@@ -28,9 +28,19 @@
 			return Builder.SetOption(this, ref allowVoidCommandDispatch, () => false);
 		}
 
-		public IConfigurationBuilder EnableCaching(Func<ICachingConfigurationBuilder, ICachingConfiguration> builder)
+		public IConfigurationBuilder EnableCaching(Action<ICachingConfigurationBuilder> builderFunction)
 		{
-			return Builder.SetOption(this, ref cachingConfiguration, () => builder(new CachingConfigurationBuilder()));
+			if (builderFunction == null)
+				throw new ArgumentNullException(nameof(builderFunction));
+
+			return Builder.SetOption(this, ref cachingConfiguration, () =>
+			{
+				var builder = new CachingConfigurationBuilder();
+
+				builderFunction(builder);
+
+				return builder.Build();
+			});
 		}
 
 		public IConfiguration Build()

@@ -8,12 +8,16 @@ using System.Reflection;
 
 public static class ContainerExtensions
 {
-	public static void RegisterCqrs(this Container container, Func<IConfigurationBuilder, IConfiguration> builder)
+	public static void RegisterCqrs(this Container container, Action<IConfigurationBuilder> builderFunction)
 	{
-		if (builder == null)
-			throw new ArgumentNullException(nameof(builder));
+		if (builderFunction == null)
+			throw new ArgumentNullException(nameof(builderFunction));
 
-		container.RegisterCqrs(builder(new ConfigurationBuilder()));
+		var builder = new ConfigurationBuilder();
+
+		builderFunction(builder);
+
+		container.RegisterCqrs(builder.Build());
 	}
 
 	public static void RegisterCqrs(this Container container, IConfiguration configuration)

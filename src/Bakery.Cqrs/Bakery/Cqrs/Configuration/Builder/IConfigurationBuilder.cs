@@ -10,7 +10,7 @@
 		IConfigurationBuilder DisallowMultipleCommandDispatch();
 		IConfigurationBuilder DisallowVoidCommandDispatch();
 
-		IConfigurationBuilder EnableCaching(Func<ICachingConfigurationBuilder, ICachingConfiguration> builder);
+		IConfigurationBuilder EnableCaching(Action<ICachingConfigurationBuilder> builderFunction);
 
 		IConfiguration Build();
 	}
