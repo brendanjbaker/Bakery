@@ -7,7 +7,12 @@ public static class ContainerExtensions
 	public static void RegisterModule<TModule>(this Container container)
 		where TModule : IModule, new()
 	{
-		new TModule().Compose(container);
+		container.RegisterModule(new TModule());
+	}
+
+	public static void RegisterModule(this Container container, IModule module)
+	{
+		module.Compose(container);
 	}
 
 	public static void RegisterScoped<TService>(this Container container)
