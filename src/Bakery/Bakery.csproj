@@ -11,6 +11,8 @@
     <RepositoryUrl>http://github.com/brendanjbaker/bakery</RepositoryUrl>
     <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
     <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <Version>0.21.1</Version>
+    <AssemblyVersion>0.21.1.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
