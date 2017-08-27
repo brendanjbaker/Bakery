@@ -4,6 +4,6 @@
 
 	public interface IParser<T>
 	{
-		T TryParse(String @string);
+		T Parse(String @string);
 	}
 }

@@ -16,7 +16,7 @@
 			this.lineSplitter = lineSplitter;
 		}
 
-		public IProperties TryParse(String @string)
+		public IProperties Parse(String @string)
 		{
 			if (String.IsNullOrEmpty(@string))
 				return null;

@@ -16,7 +16,7 @@
 			return @object;
 		}
 
-		public Object TryParse(String @string)
+		public Object Parse(String @string)
 		{
 			return TryParse<Object>(@string);
 		}

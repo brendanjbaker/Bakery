@@ -5,7 +5,7 @@
 	public class SystemBase64Parser
 		: IBase64Parser
 	{
-		public Byte[] TryParse(String @string)
+		public Byte[] Parse(String @string)
 		{
 			// Consistent with .NET Framework methods, TryParse() won't throw an
 			// ArgumentNullException if the supplied input is null.

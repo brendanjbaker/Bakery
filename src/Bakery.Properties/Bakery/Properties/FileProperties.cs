@@ -27,7 +27,7 @@
 			if (!File.Exists(path))
 				return new EmptyProperties().ToDictionary();
 
-			var properties = propertiesParser.TryParse(File.ReadAllText(path));
+			var properties = propertiesParser.Parse(File.ReadAllText(path));
 
 			if (properties == null)
 				return new EmptyProperties().ToDictionary();

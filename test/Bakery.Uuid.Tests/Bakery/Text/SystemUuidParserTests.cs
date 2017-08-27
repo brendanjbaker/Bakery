@@ -14,7 +14,7 @@
 		[Fact]
 		public void ParsingNullIsNull()
 		{
-			Assert.Null(Create().TryParse(null));
+			Assert.Null(Create().Parse(null));
 		}
 
 		[Theory]
@@ -22,7 +22,7 @@
 		[InlineData("Test")]
 		public void ParsingInvalidIsNull(String text)
 		{
-			Assert.Null(Create().TryParse(text));
+			Assert.Null(Create().Parse(text));
 		}
 
 		[Theory]
@@ -30,7 +30,7 @@
 		[InlineData("11112222-3333-4444-5555-666677778888")]
 		public void Parse(String text)
 		{
-			var uuid = Create().TryParse(text);
+			var uuid = Create().Parse(text);
 			var guid = Guid.Parse(text);
 
 			Assert.True(uuid == guid);

@@ -22,7 +22,7 @@
 			this.encoding = encoding;
 		}
 
-		public IBasicAuthentication TryParse(String @string)
+		public IBasicAuthentication Parse(String @string)
 		{
 			// Consistent with .NET Framework methods, TryParse() won't throw an
 			// ArgumentNullException if the supplied input is null.
@@ -34,7 +34,7 @@
 				return null;
 
 			var basicAuthenticationBase64 = @string.Substring(6);
-			var basicAuthenticationBytes = base64Parser.TryParse(basicAuthenticationBase64);
+			var basicAuthenticationBytes = base64Parser.Parse(basicAuthenticationBase64);
 
 			if (basicAuthenticationBytes == null)
 				return null;

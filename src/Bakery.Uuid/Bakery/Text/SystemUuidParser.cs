@@ -5,7 +5,7 @@
 	public class SystemUuidParser
 		: IUuidParser
 	{
-		public Uuid? TryParse(String @string)
+		public Uuid? Parse(String @string)
 		{
 			Guid guid;
 
