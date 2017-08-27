@@ -18,4 +18,9 @@ public static class StringCharacterTypeExtensions
 	{
 		return @string.Where(c => !Char.IsLetter(c) && !Char.IsNumber(c));
 	}
+
+	public static IEnumerable<Char> WhitespaceCharacters(this String @string)
+	{
+		return @string.Where(c => Char.IsWhiteSpace(c));
+	}
 }

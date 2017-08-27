@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <RootNamespace />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bakery.Caching\Bakery.Caching.csproj" />
+    <ProjectReference Include="..\Bakery.Exceptions\Bakery.Exceptions.csproj" />
+    <ProjectReference Include="..\Bakery.Text\Bakery.Text.csproj" />
+  </ItemGroup>
+
+</Project>
