@@ -22,9 +22,19 @@
 			return (random.GetUInt64() % 10).ToString();
 		}
 
+		public static Int32 GetInt32(this IRandom random)
+		{
+			return BitConverter.ToInt32(random.GetBytes(4), 0);
+		}
+
 		public static Int64 GetInt64(this IRandom random)
 		{
 			return BitConverter.ToInt64(random.GetBytes(8), 0);
+		}
+
+		public static UInt32 GetUInt32(this IRandom random)
+		{
+			return BitConverter.ToUInt32(random.GetBytes(4), 0);
 		}
 
 		public static UInt64 GetUInt64(this IRandom random)
