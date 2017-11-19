@@ -2,6 +2,8 @@
 
 public static class IntegerExtensions
 {
+	private static readonly DateTime UNIX_EPOCH = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
 	public static TimeSpan Days(this Int32 integer)
 	{
 		return TimeSpan.FromDays(integer);
@@ -25,5 +27,12 @@ public static class IntegerExtensions
 	public static TimeSpan Seconds(this Int32 integer)
 	{
 		return TimeSpan.FromSeconds(integer);
+	}
+
+	public static DateTime ToDateTime(this Int64 integer, Boolean useMilliseconds = false)
+	{
+		return useMilliseconds
+			? UNIX_EPOCH.AddMilliseconds(integer)
+			: UNIX_EPOCH.AddSeconds(integer);
 	}
 }
