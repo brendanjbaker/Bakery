@@ -6,6 +6,15 @@
 	public class JsonNetJsonParser
 		: IJsonParser
 	{
+		private readonly JsonSerializerSettings jsonSerializerSettings;
+
+		public JsonNetJsonParser() { }
+
+		public JsonNetJsonParser(JsonSerializerSettings jsonSerializerSettings)
+		{
+			this.jsonSerializerSettings = jsonSerializerSettings ?? throw new ArgumentNullException(nameof(jsonSerializerSettings));
+		}
+
 		public T Parse<T>(String @string)
 		{
 			var @object = TryParse<T>(@string);
@@ -23,7 +32,9 @@
 
 		public T TryParse<T>(String @string)
 		{
-			return JsonConvert.DeserializeObject<T>(@string);
+			return jsonSerializerSettings == null
+				? JsonConvert.DeserializeObject<T>(@string)
+				: JsonConvert.DeserializeObject<T>(@string, jsonSerializerSettings);
 		}
 	}
 }
