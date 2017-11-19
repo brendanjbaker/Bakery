@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <VersionPrefix>0.21.1</VersionPrefix>
+    <TargetFramework>netstandard1.5</TargetFramework>
+    <AssemblyName>Bakery.Events.Amazon</AssemblyName>
+    <PackageId>Bakery.Events.Amazon</PackageId>
+    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bakery.Events\Bakery.Events.csproj" />
+    <ProjectReference Include="..\Bakery.Text\Bakery.Text.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.3.0.5" />
+    <PackageReference Include="AWSSDK.SQS" Version="3.3.1.3" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Bakery Class Library</Description>
+    <VersionPrefix>0.21.1</VersionPrefix>
+    <Authors>baker</Authors>
+    <TargetFramework>netstandard1.5</TargetFramework>
+    <AssemblyName>Bakery</AssemblyName>
+    <PackageId>Bakery</PackageId>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>http://github.com/brendanjbaker/bakery</RepositoryUrl>
+    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <Version>0.21.1</Version>
+    <AssemblyVersion>0.21.1.0</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bakery.Caching\Bakery.Caching.csproj" />
+    <ProjectReference Include="..\Bakery.Collections\Bakery.Collections.csproj" />
+    <ProjectReference Include="..\Bakery.Events\Bakery.Events.csproj" />
+    <ProjectReference Include="..\Bakery.Exceptions\Bakery.Exceptions.csproj" />
+    <ProjectReference Include="..\Bakery.Hashing\Bakery.Hashing.csproj" />
+    <ProjectReference Include="..\Bakery.Logging\Bakery.Logging.csproj" />
+    <ProjectReference Include="..\Bakery.Mail\Bakery.Mail.csproj" />
+    <ProjectReference Include="..\Bakery.Processes\Bakery.Processes.csproj" />
+    <ProjectReference Include="..\Bakery.Properties\Bakery.Properties.csproj" />
+    <ProjectReference Include="..\Bakery.Security\Bakery.Security.csproj" />
+    <ProjectReference Include="..\Bakery.Text\Bakery.Text.csproj" />
+    <ProjectReference Include="..\Bakery.Text.Json\Bakery.Text.Json.csproj" />
+    <ProjectReference Include="..\Bakery.Time\Bakery.Time.csproj" />
+    <ProjectReference Include="..\Bakery.Uuid\Bakery.Uuid.csproj" />
+  </ItemGroup>
+
+</Project>

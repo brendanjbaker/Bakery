@@ -7,7 +7,12 @@ public static class ServiceCollectionExtensions
 	public static IServiceCollection AddModule<TModule>(this IServiceCollection serviceCollection)
 		where TModule : IModule, new()
 	{
-		new TModule().Compose(serviceCollection);
+		return serviceCollection.AddModule(new TModule());
+	}
+
+	public static IServiceCollection AddModule(this IServiceCollection serviceCollection, IModule module)
+	{
+		module.Compose(serviceCollection);
 
 		return serviceCollection;
 	}
