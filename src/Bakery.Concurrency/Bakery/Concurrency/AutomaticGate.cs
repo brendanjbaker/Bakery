@@ -11,7 +11,7 @@
 		private readonly SemaphoreSlim gate;
 
 		public AutomaticGate()
-			: this(new SemaphoreSlim(0, 1), true) { }
+			: this(new SemaphoreSlim(0, Int32.MaxValue), true) { }
 
 		public AutomaticGate(SemaphoreSlim gate)
 			: this(gate, false) { }
@@ -38,6 +38,12 @@
 
 		public async Task<Boolean> WaitAsync(TimeSpan timeout, CancellationToken cancellationToken)
 		{
+			if (gate.Wait(TimeSpan.Zero))
+				return true;
+
+			if (timeout == TimeSpan.MaxValue)
+				timeout = TimeSpan.FromMilliseconds(-1);
+
 			return await gate.WaitAsync(timeout, cancellationToken);
 		}
 	}
