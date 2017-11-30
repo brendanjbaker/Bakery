@@ -69,7 +69,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bakery.Concurrency.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bakery.Math", "src\Bakery.Math\Bakery.Math.csproj", "{A2F59BB2-C4B1-4C70-A693-F960F698DB2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.Transput", "Bakery.Transput\Bakery.Transput.csproj", "{F3E50EEA-6F3B-449C-BB28-8BC3DFD9DC45}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.Transput", "src\Bakery.Transput\Bakery.Transput.csproj", "{F3E50EEA-6F3B-449C-BB28-8BC3DFD9DC45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
