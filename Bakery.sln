@@ -67,7 +67,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bakery.Concurrency", "src\B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bakery.Concurrency.Tests", "test\Bakery.Concurrency.Tests\Bakery.Concurrency.Tests.csproj", "{0E44C610-A387-45D5-92B2-FDDDDCF422B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.Math", "src\Bakery.Math\Bakery.Math.csproj", "{A2F59BB2-C4B1-4C70-A693-F960F698DB2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bakery.Math", "src\Bakery.Math\Bakery.Math.csproj", "{A2F59BB2-C4B1-4C70-A693-F960F698DB2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.Transput", "Bakery.Transput\Bakery.Transput.csproj", "{F3E50EEA-6F3B-449C-BB28-8BC3DFD9DC45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -195,6 +197,10 @@ Global
 		{A2F59BB2-C4B1-4C70-A693-F960F698DB2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2F59BB2-C4B1-4C70-A693-F960F698DB2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2F59BB2-C4B1-4C70-A693-F960F698DB2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3E50EEA-6F3B-449C-BB28-8BC3DFD9DC45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3E50EEA-6F3B-449C-BB28-8BC3DFD9DC45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3E50EEA-6F3B-449C-BB28-8BC3DFD9DC45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3E50EEA-6F3B-449C-BB28-8BC3DFD9DC45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -230,6 +236,7 @@ Global
 		{3F4B0364-E91B-4596-86DC-5674756030DC} = {89EA03FA-9EF5-4F63-9984-A0AD616B462B}
 		{0E44C610-A387-45D5-92B2-FDDDDCF422B4} = {C5A56764-9753-4CE3-9BA7-DD01FA00C451}
 		{A2F59BB2-C4B1-4C70-A693-F960F698DB2E} = {89EA03FA-9EF5-4F63-9984-A0AD616B462B}
+		{F3E50EEA-6F3B-449C-BB28-8BC3DFD9DC45} = {89EA03FA-9EF5-4F63-9984-A0AD616B462B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {93FF05FA-8BD7-4C79-A7AD-9671FC5AC7F1}
