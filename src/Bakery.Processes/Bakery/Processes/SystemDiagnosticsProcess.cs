@@ -5,6 +5,7 @@
 	using System;
 	using System.Diagnostics;
 	using System.Linq;
+	using System.Threading;
 	using System.Threading.Tasks;
 
 	public class SystemDiagnosticsProcess
@@ -100,7 +101,10 @@
 						hasReceivedError = true;
 					}
 
-					instance.outputQueue.Enqueue(new Output(OutputType.Error, text));
+					instance.outputQueue
+						.EnqueueAsync(new Output(OutputType.Error, text), CancellationToken.None)
+						.GetAwaiter()
+						.GetResult();
 				}
 			};
 
@@ -126,7 +130,10 @@
 						? OutputType.Combined
 						: OutputType.Output;
 
-					instance.outputQueue.Enqueue(new Output(outputType, text));
+					instance.outputQueue
+						.EnqueueAsync(new Output(outputType, text), CancellationToken.None)
+						.GetAwaiter()
+						.GetResult();
 				}
 			};
 
@@ -146,7 +153,7 @@
 			if (timeout < TimeSpan.Zero)
 				throw new ArgumentOutOfRangeException(nameof(timeout));
 
-			return await outputQueue.TryDequeueAsync(timeout);
+			return await outputQueue.DequeueAsync(timeout);
 		}
 
 		public async Task WaitForExit(TimeSpan timeout)

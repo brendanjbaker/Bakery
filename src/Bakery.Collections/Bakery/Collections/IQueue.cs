@@ -1,11 +1,12 @@
 ﻿namespace Bakery.Collections
 {
 	using System;
+	using System.Threading;
 	using System.Threading.Tasks;
 
 	public interface IQueue<T>
 	{
-		void Enqueue(T item);
-		Task<T> TryDequeueAsync(TimeSpan timeout);
+		Task EnqueueAsync(T item, CancellationToken cancellationToken);
+		Task<T> DequeueAsync(TimeSpan timeout, CancellationToken cancellationToken);
 	}
 }

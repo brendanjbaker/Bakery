@@ -1,40 +1,38 @@
 ﻿namespace Bakery.Collections
 {
-	using Exceptions;
-	using Nito.AsyncEx;
+	using Bakery.Concurrency;
 	using System;
+	using System.Threading;
 	using System.Threading.Tasks;
 
 	public class Queue<T>
 		: IQueue<T>
 	{
-		private readonly AsyncSemaphore gate;
+		private readonly AutomaticGate gate;
 		private readonly System.Collections.Generic.Queue<T> queue;
 
 		public Queue()
 		{
 			queue = new System.Collections.Generic.Queue<T>();
-			gate = new AsyncSemaphore(0);
+			gate = new AutomaticGate();
 		}
 
-		public void Enqueue(T item)
+		public Task EnqueueAsync(T item, CancellationToken cancellationToken)
 		{
 			lock (queue)
 				queue.Enqueue(item);
 
-			gate.Release();
+			gate.Open();
+
+			return Task.CompletedTask;
 		}
 
-		public async Task<T> TryDequeueAsync(TimeSpan timeout)
+		public async Task<T> DequeueAsync(TimeSpan timeout, CancellationToken cancellationToken)
 		{
-			if (timeout < TimeSpan.Zero)
-				throw new ArgumentNegativeException(nameof(timeout));
+			await gate.WaitAsync(timeout, cancellationToken);
 
-			if (await gate.WaitAsync(timeout))
-				lock (queue)
-					return queue.Dequeue();
-
-			return default(T);
+			lock (queue)
+				return queue.Dequeue();
 		}
 	}
 }
