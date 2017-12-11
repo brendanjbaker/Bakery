@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Bakery.Concurrency\Bakery.Concurrency.csproj" />
     <ProjectReference Include="..\Bakery.Exceptions\Bakery.Exceptions.csproj" />
   </ItemGroup>
 

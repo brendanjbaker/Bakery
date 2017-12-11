@@ -13,7 +13,7 @@
 		{
 			var queue = new Queue<String>();
 
-			var dequeued = await queue.TryDequeueAsync(TimeSpan.FromMilliseconds(timeoutMilliseconds));
+			var dequeued = await queue.DequeueAsync(TimeSpan.FromMilliseconds(timeoutMilliseconds));
 
 			Assert.Null(dequeued);
 		}
@@ -27,7 +27,7 @@
 
 			queue.Enqueue("Test");
 
-			var dequeued = await queue.TryDequeueAsync(TimeSpan.FromMilliseconds(timeoutMilliseconds));
+			var dequeued = await queue.DequeueAsync(TimeSpan.FromMilliseconds(timeoutMilliseconds));
 
 			Assert.Equal(dequeued, "Test");
 		}
@@ -40,7 +40,7 @@
 
 			Queue(queue, "Test", TimeSpan.FromMilliseconds(enqueueDelayMilliseconds));
 
-			var dequeued = await queue.TryDequeueAsync(TimeSpan.FromMilliseconds(dequeueTimeoutMilliseconds));
+			var dequeued = await queue.DequeueAsync(TimeSpan.FromMilliseconds(dequeueTimeoutMilliseconds));
 
 			Assert.Equal(dequeued, "Test");
 		}
@@ -53,7 +53,7 @@
 
 			Queue(queue, "Test", TimeSpan.FromMilliseconds(enqueueDelayMilliseconds));
 
-			var dequeued = await queue.TryDequeueAsync(TimeSpan.FromMilliseconds(dequeueTimeoutMilliseconds));
+			var dequeued = await queue.DequeueAsync(TimeSpan.FromMilliseconds(dequeueTimeoutMilliseconds));
 
 			Assert.Null(dequeued);
 		}
