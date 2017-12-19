@@ -1,18 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Bakery Class Library</Description>
-    <VersionPrefix>0.21.1</VersionPrefix>
-    <Authors>baker</Authors>
-    <TargetFramework>netstandard1.5</TargetFramework>
-    <AssemblyName>Bakery</AssemblyName>
-    <PackageId>Bakery</PackageId>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>http://github.com/brendanjbaker/bakery</RepositoryUrl>
-    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
-    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
-    <Version>0.21.1</Version>
-    <AssemblyVersion>0.21.1.0</AssemblyVersion>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace />
   </PropertyGroup>
 
   <ItemGroup>

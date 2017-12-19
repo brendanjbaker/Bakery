@@ -1,15 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <VersionPrefix>0.21.1</VersionPrefix>
-    <TargetFramework>netstandard1.5</TargetFramework>
-    <AssemblyName>Bakery.Text.Json</AssemblyName>
-    <PackageId>Bakery.Text.Json</PackageId>
-    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
-    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace />
   </PropertyGroup>
 
   <ItemGroup>
