@@ -6,4 +6,10 @@ public static class DictionaryExtensions
 	{
 		return new Dictionary<TKey, TValue>(dictionary);
 	}
+
+	public static TValue TryGetValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
+		where TValue : class
+	{
+		return dictionary.TryGetValue(key, out var value) ? value : null;
+	}
 }
