@@ -73,7 +73,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bakery.Transput", "src\Bake
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bakery.Programs", "src\Bakery.Programs\Bakery.Programs.csproj", "{0AEBB1B6-FA74-4161-9509-BE0FA08FEB38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.Metrics", "src\Bakery.Metrics\Bakery.Metrics.csproj", "{29BF83F2-7CB0-471F-BDF6-C3C4FF960C93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bakery.Metrics", "src\Bakery.Metrics\Bakery.Metrics.csproj", "{29BF83F2-7CB0-471F-BDF6-C3C4FF960C93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakery.Reflection", "src\Bakery.Reflection\Bakery.Reflection.csproj", "{52897832-9A3B-4351-832C-A5CEA0533515}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -213,6 +215,10 @@ Global
 		{29BF83F2-7CB0-471F-BDF6-C3C4FF960C93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29BF83F2-7CB0-471F-BDF6-C3C4FF960C93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29BF83F2-7CB0-471F-BDF6-C3C4FF960C93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52897832-9A3B-4351-832C-A5CEA0533515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52897832-9A3B-4351-832C-A5CEA0533515}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52897832-9A3B-4351-832C-A5CEA0533515}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52897832-9A3B-4351-832C-A5CEA0533515}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -251,6 +257,7 @@ Global
 		{F3E50EEA-6F3B-449C-BB28-8BC3DFD9DC45} = {89EA03FA-9EF5-4F63-9984-A0AD616B462B}
 		{0AEBB1B6-FA74-4161-9509-BE0FA08FEB38} = {89EA03FA-9EF5-4F63-9984-A0AD616B462B}
 		{29BF83F2-7CB0-471F-BDF6-C3C4FF960C93} = {89EA03FA-9EF5-4F63-9984-A0AD616B462B}
+		{52897832-9A3B-4351-832C-A5CEA0533515} = {89EA03FA-9EF5-4F63-9984-A0AD616B462B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {93FF05FA-8BD7-4C79-A7AD-9671FC5AC7F1}
